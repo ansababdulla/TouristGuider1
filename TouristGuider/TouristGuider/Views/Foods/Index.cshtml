@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TouristGuider.Models.Food>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FdNm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FdRt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Restaurant.RstNm)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FdNm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FdRt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Restaurant.RstNm)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FdID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.FdID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.FdID })
+        </td>
+    </tr>
+}
+
+</table>

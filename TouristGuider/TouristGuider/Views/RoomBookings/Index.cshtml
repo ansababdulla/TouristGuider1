@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TouristGuider.Models.RoomBooking>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RmID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TtlRt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChkInDt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChlOtDt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isCheckout)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RmID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TtlRt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChkInDt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChlOtDt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isCheckout)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RmBkID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RmBkID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RmBkID })
+        </td>
+    </tr>
+}
+
+</table>

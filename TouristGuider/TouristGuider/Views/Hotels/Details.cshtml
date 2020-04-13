@@ -1,0 +1,42 @@
+﻿@model TouristGuider.Models.Hotel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Hotel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HtlNm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HtlNm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HtlLctn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HtlLctn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Credential.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Credential.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.HtlID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

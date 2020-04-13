@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TouristGuider.Models.Car>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CarNm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarRt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentCar.RtNm)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CarNm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CarRt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RentCar.RtNm)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CarID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CarID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CarID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,74 @@
+﻿@model TouristGuider.Models.RentBooking
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RentBooking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateBooked)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateBooked)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateReturned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateReturned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoofDays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoofDays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TtlRt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TtlRt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isReturned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isReturned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Car.CarNm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car.CarNm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RtBkID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

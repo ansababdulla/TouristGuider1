@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TouristGuider.Models.FoodOrderDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Food.FdNm)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Qty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Food.FdNm)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FdOdrDtID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.FdOdrDtID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.FdOdrDtID })
+        </td>
+    </tr>
+}
+
+</table>
