@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TouristGuider.Models;
 using TouristGuider.ViewModel;
+using System.Data.Entity;
 
 namespace TouristGuider.Controllers
 {
@@ -40,7 +41,7 @@ namespace TouristGuider.Controllers
                 user.CredID = cred.CredID;
                 db.Users.Add(user);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Signin");
             }
             return View();
         }
@@ -53,30 +54,46 @@ namespace TouristGuider.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Signin(RegistrationVM regvm)
         {
-            var res = db.Credentials.Where(x => x.Email == regvm.email && x.Password == regvm.password).FirstOrDefault();
-            if (res.Email == regvm.email && res.Password == regvm.password)
+
+            Credential cred = db.Credentials.Where(x => x.Email == regvm.email && x.Password == regvm.password).FirstOrDefault();
+            var user = db.Users.Where(u => u.CredID == cred.CredID).FirstOrDefault();
+            if (cred != null)
             {
-                if (res.RoleID == 1)
+                if (cred.RoleID == 1)
                 {
+                    Session["Role"] = "User";
+                    Session["id"] = cred.CredID;
                     return RedirectToAction("Index", "Home");
                     
                 }
-                if(res.RoleID == 2)
+                if(cred.RoleID == 2)
                 {
+                    Session["Role"] = "Admin";
+                    Session["id"] = cred.CredID;
                     return RedirectToAction("Index","Admin");
                 }
-                if (res.RoleID == 3)
+                if (cred.RoleID == 3)
                 {
-                    return RedirectToAction("Index", "Admin");
+                    Session["Role"] = "Restaurant Owner";
+                    Session["id"] = cred.CredID;
+                    return RedirectToAction("Index", "Foods");
                 }
-                if (res.RoleID == 4)
+                if (cred.RoleID == 4)
                 {
-                    return RedirectToAction("Index", "Admin");
+                    Session["Role"] = "Hotel Owner";
+                    Session["id"] = cred.CredID;
+                    return RedirectToAction("Index", "Rooms");
                 }
-                if (res.RoleID == 5)
+                if (cred.RoleID == 5)
                 {
-                    return RedirectToAction("Index", "Admin");
+                    Session["Role"] = "Rent Owner";
+                    Session["id"] = cred.CredID;
+                    return RedirectToAction("Index", "Cars");
                 }
+            }
+            else
+            {
+                ModelState.AddModelError("New Error", "Invalid Username or Password");
             }
             return View();
 

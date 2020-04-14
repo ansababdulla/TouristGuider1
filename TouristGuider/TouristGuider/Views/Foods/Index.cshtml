@@ -17,9 +17,7 @@
         <th>
             @Html.DisplayNameFor(model => model.FdRt)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Restaurant.RstNm)
-        </th>
+
         <th></th>
     </tr>
 
@@ -31,9 +29,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.FdRt)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Restaurant.RstNm)
-        </td>
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.FdID }) |
             @Html.ActionLink("Details", "Details", new { id=item.FdID }) |

@@ -13,11 +13,18 @@ namespace TouristGuider.Controllers
     public class CarsController : Controller
     {
         private Entities db = new Entities();
-
+        
         // GET: Cars
         public ActionResult Index()
         {
-            var cars = db.Cars.Include(c => c.RentCar);
+            String role = Session["Role"].ToString();
+            if(role !="Rent Owner")
+                {
+                return RedirectToAction("Signin", "Account");
+                }
+            var id = Convert.ToInt32(Session["id"]);
+            RentCar rtcr = db.RentCars.Where(r => r.CredID == id).FirstOrDefault();
+            var cars = db.Cars.Include(c => c.RentCar).Where(c => c.RtID == rtcr.RtID);
             return View(cars.ToList());
         }
 
@@ -48,11 +55,17 @@ namespace TouristGuider.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CarID,RtID,CarNm,CarRt")] Car car)
+        public ActionResult Create( Car car)
         {
             if (ModelState.IsValid)
             {
-                db.Cars.Add(car);
+                var id = Convert.ToInt32(Session["id"]);
+                RentCar rt = db.RentCars.Where(r => r.CredID == id).FirstOrDefault();
+                Car cr = new Car();
+                cr.CarNm = car.CarNm;
+                cr.CarRt = car.CarRt;
+                cr.RtID = rt.RtID;
+                db.Cars.Add(cr);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

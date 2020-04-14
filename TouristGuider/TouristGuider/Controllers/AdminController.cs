@@ -77,6 +77,12 @@ namespace TouristGuider.Controllers
                 usr.CredID = cred.CredID;
                 db.Users.Add(usr);
                 db.SaveChanges();
+                Restaurant res = new Restaurant();
+                res.RstNm = create._restaurant.RstNm;
+                res.RstLctn = create._restaurant.RstLctn;
+                res.CredID = cred.CredID;
+                db.Restaurants.Add(res);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -110,6 +116,12 @@ namespace TouristGuider.Controllers
                 usr.CredID = cred.CredID;
                 db.Users.Add(usr);
                 db.SaveChanges();
+                Hotel htl = new Hotel();
+                htl.HtlNm = create._hotel.HtlNm;
+                htl.HtlLctn = create._hotel.HtlLctn;
+                htl.CredID = cred.CredID;
+                db.Hotels.Add(htl);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -142,6 +154,11 @@ namespace TouristGuider.Controllers
                 usr.Name = create._user.Name;
                 usr.CredID = cred.CredID;
                 db.Users.Add(usr);
+                db.SaveChanges();
+                RentCar rtcr = new RentCar();
+                rtcr.RtNm = create._rentcar.RtNm;
+                rtcr.CredID = cred.CredID;
+                db.RentCars.Add(rtcr);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

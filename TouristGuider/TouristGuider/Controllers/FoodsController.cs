@@ -17,7 +17,14 @@ namespace TouristGuider.Controllers
         // GET: Foods
         public ActionResult Index()
         {
-            var foods = db.Foods.Include(f => f.Restaurant);
+            String role = Session["Role"].ToString();
+            if (role != "Restaurant Owner")
+            {
+                return RedirectToAction("Signin", "Account");
+            }
+            var id = Convert.ToInt32(Session["id"]);
+            Restaurant res = db.Restaurants.Where(x => x.CredID == id).FirstOrDefault();
+            var foods = db.Foods.Include(f => f.Restaurant).Where(f => f.RstID == res.RstID);
             return View(foods.ToList());
         }
 
@@ -48,11 +55,18 @@ namespace TouristGuider.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FdID,RstID,FdNm,FdRt")] Food food)
+        public ActionResult Create(Food food)
         {
+            var id = Convert.ToInt32(Session["id"]);
+            Restaurant res1 = db.Restaurants.Where(x => x.CredID == id).FirstOrDefault();
             if (ModelState.IsValid)
             {
-                db.Foods.Add(food);
+                Restaurant res = new Restaurant();
+                Food fd = new Food();
+                fd.FdNm = food.FdNm;
+                fd.FdRt = food.FdRt;
+                fd.RstID = res1.RstID;
+                db.Foods.Add(fd);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

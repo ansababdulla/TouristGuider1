@@ -17,7 +17,14 @@ namespace TouristGuider.Controllers
         // GET: Rooms
         public ActionResult Index()
         {
-            var rooms = db.Rooms.Include(r => r.Hotel);
+            String role = Session["Role"].ToString();
+            if (role != "Hotel Owner")
+            {
+                return RedirectToAction("Signin", "Account");
+            }
+            var id = Convert.ToInt32(Session["id"]);
+            Hotel htl = db.Hotels.Where(x => x.CredID == id).FirstOrDefault();
+            var rooms = db.Rooms.Include(f => f.Hotel).Where(r => r.HtlID == htl.HtlID);
             return View(rooms.ToList());
         }
 
@@ -48,14 +55,22 @@ namespace TouristGuider.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RmID,HtlID,RmNm,RmRt")] Room room)
+        public ActionResult Create( Room room)
         {
+            var id = Convert.ToInt32(Session["id"]);
+            Hotel htl = db.Hotels.Where(x => x.CredID == id).FirstOrDefault();
             if (ModelState.IsValid)
             {
-                db.Rooms.Add(room);
+                Restaurant res = new Restaurant();
+                Room rm = new Room();
+                rm.RmNm = room.RmNm;
+                rm.RmRt = room.RmRt;
+                rm.HtlID = htl.HtlID;
+                db.Rooms.Add(rm);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
 
             ViewBag.HtlID = new SelectList(db.Hotels, "HtlID", "HtlNm", room.HtlID);
             return View(room);
