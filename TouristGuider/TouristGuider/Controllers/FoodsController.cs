@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
 using TouristGuider.Models;
@@ -27,6 +29,32 @@ namespace TouristGuider.Controllers
             var foods = db.Foods.Include(f => f.Restaurant).Where(f => f.RstID == res.RstID);
             return View(foods.ToList());
         }
+        public ActionResult Viewfood(int id)
+        {
+
+            var fd = db.Foods.Include(f => f.Restaurant).Where(f => f.RstID == id).ToList();
+            var view = new CreateVM()
+            {
+                _food = fd
+            };
+            return View(fd);
+        }
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Viewfood(Food createVM)
+        {
+       //    FoodOrderDetail fdodrdtls = new FoodOrderDetail();
+        //    fdodrdtls.FdID = id;
+        //    fdodrdtls.Qty = qty;
+        //    db.FoodOrderDetails.Add(fdodrdtls);
+        //    db.SaveChanges();
+            return View();
+        }
+        //public ActionResult Addfood()
+        //{
+        //    return View();
+        //}
+
 
         // GET: Foods/Details/5
         public ActionResult Details(long? id)

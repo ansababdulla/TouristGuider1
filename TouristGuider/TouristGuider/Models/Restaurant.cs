@@ -18,6 +18,7 @@ namespace TouristGuider.Models
         public Restaurant()
         {
             this.Foods = new HashSet<Food>();
+            this.FoodOrders = new HashSet<FoodOrder>();
         }
     
         public long RstID { get; set; }
@@ -28,5 +29,7 @@ namespace TouristGuider.Models
         public virtual Credential Credential { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Food> Foods { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FoodOrder> FoodOrders { get; set; }
     }
 }

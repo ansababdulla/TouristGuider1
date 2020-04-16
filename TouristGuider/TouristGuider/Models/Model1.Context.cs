@@ -28,15 +28,15 @@ namespace TouristGuider.Models
         public virtual DbSet<Car> Cars { get; set; }
         public virtual DbSet<Credential> Credentials { get; set; }
         public virtual DbSet<Food> Foods { get; set; }
-        public virtual DbSet<FoodOrder> FoodOrders { get; set; }
-        public virtual DbSet<FoodOrderDetail> FoodOrderDetails { get; set; }
         public virtual DbSet<Hotel> Hotels { get; set; }
-        public virtual DbSet<RentBooking> RentBookings { get; set; }
         public virtual DbSet<RentCar> RentCars { get; set; }
         public virtual DbSet<Restaurant> Restaurants { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
-        public virtual DbSet<RoomBooking> RoomBookings { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<FoodOrderDetail> FoodOrderDetails { get; set; }
+        public virtual DbSet<FoodOrder> FoodOrders { get; set; }
+        public virtual DbSet<RentBooking> RentBookings { get; set; }
+        public virtual DbSet<RoomBooking> RoomBookings { get; set; }
     }
 }

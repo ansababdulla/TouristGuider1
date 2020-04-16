@@ -14,6 +14,8 @@ namespace TouristGuider.Models
         public Restaurant _restaurant { get; set; }
         public Hotel _hotel { get; set; }
         public RentCar _rentcar { get; set; }
+        public FoodOrderDetail _foodorderdtls { get; set; }
+        public IEnumerable<Food> _food { get; set; }
 
 
 

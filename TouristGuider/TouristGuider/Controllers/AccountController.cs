@@ -63,6 +63,7 @@ namespace TouristGuider.Controllers
                 {
                     Session["Role"] = "User";
                     Session["id"] = cred.CredID;
+                    Session["Usrid"] = user.UserID;
                     return RedirectToAction("Index", "Home");
                     
                 }
@@ -70,24 +71,28 @@ namespace TouristGuider.Controllers
                 {
                     Session["Role"] = "Admin";
                     Session["id"] = cred.CredID;
+                    //Session["Usrid"] = user.UserID;
                     return RedirectToAction("Index","Admin");
                 }
                 if (cred.RoleID == 3)
                 {
                     Session["Role"] = "Restaurant Owner";
                     Session["id"] = cred.CredID;
+                    Session["Usrid"] = user.UserID;
                     return RedirectToAction("Index", "Foods");
                 }
                 if (cred.RoleID == 4)
                 {
                     Session["Role"] = "Hotel Owner";
                     Session["id"] = cred.CredID;
+                    Session["Usrid"] = user.UserID;
                     return RedirectToAction("Index", "Rooms");
                 }
                 if (cred.RoleID == 5)
                 {
                     Session["Role"] = "Rent Owner";
                     Session["id"] = cred.CredID;
+                    Session["Usrid"] = user.UserID;
                     return RedirectToAction("Index", "Cars");
                 }
             }

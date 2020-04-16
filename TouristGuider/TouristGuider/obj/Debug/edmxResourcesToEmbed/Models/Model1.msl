@@ -31,26 +31,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="FoodOrders">
-      <EntityTypeMapping TypeName="TouristGuiderModel.FoodOrder">
-        <MappingFragment StoreEntitySet="FoodOrder">
-          <ScalarProperty Name="FdOdrID" ColumnName="FdOdrID" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="isPaid" ColumnName="isPaid" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="Ttl" ColumnName="Ttl" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="FoodOrderDetails">
-      <EntityTypeMapping TypeName="TouristGuiderModel.FoodOrderDetail">
-        <MappingFragment StoreEntitySet="FoodOrderDetails">
-          <ScalarProperty Name="FdOdrDtID" ColumnName="FdOdrDtID" />
-          <ScalarProperty Name="FdID" ColumnName="FdID" />
-          <ScalarProperty Name="Qty" ColumnName="Qty" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Hotels">
       <EntityTypeMapping TypeName="TouristGuiderModel.Hotel">
         <MappingFragment StoreEntitySet="Hotel">
@@ -58,20 +38,6 @@
           <ScalarProperty Name="CredID" ColumnName="CredID" />
           <ScalarProperty Name="HtlNm" ColumnName="HtlNm" />
           <ScalarProperty Name="HtlLctn" ColumnName="HtlLctn" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="RentBookings">
-      <EntityTypeMapping TypeName="TouristGuiderModel.RentBooking">
-        <MappingFragment StoreEntitySet="RentBooking">
-          <ScalarProperty Name="RtBkID" ColumnName="RtBkID" />
-          <ScalarProperty Name="CarID" ColumnName="CarID" />
-          <ScalarProperty Name="DateBooked" ColumnName="DateBooked" />
-          <ScalarProperty Name="DateReturned" ColumnName="DateReturned" />
-          <ScalarProperty Name="NoofDays" ColumnName="NoofDays" />
-          <ScalarProperty Name="TtlRt" ColumnName="TtlRt" />
-          <ScalarProperty Name="isReturned" ColumnName="isReturned" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -112,25 +78,63 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="RoomBookings">
-      <EntityTypeMapping TypeName="TouristGuiderModel.RoomBooking">
-        <MappingFragment StoreEntitySet="RoomBooking">
-          <ScalarProperty Name="RmBkID" ColumnName="RmBkID" />
-          <ScalarProperty Name="RmID" ColumnName="RmID" />
-          <ScalarProperty Name="TtlRt" ColumnName="TtlRt" />
-          <ScalarProperty Name="ChkInDt" ColumnName="ChkInDt" />
-          <ScalarProperty Name="ChlOtDt" ColumnName="ChlOtDt" />
-          <ScalarProperty Name="isCheckout" ColumnName="isCheckout" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="TouristGuiderModel.User">
         <MappingFragment StoreEntitySet="User">
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="CredID" ColumnName="CredID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoodOrderDetails">
+      <EntityTypeMapping TypeName="TouristGuiderModel.FoodOrderDetail">
+        <MappingFragment StoreEntitySet="FoodOrderDetails">
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="FdID" ColumnName="FdID" />
+          <ScalarProperty Name="FdOdrID" ColumnName="FdOdrID" />
+          <ScalarProperty Name="FdOdrDtID" ColumnName="FdOdrDtID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoodOrders">
+      <EntityTypeMapping TypeName="TouristGuiderModel.FoodOrder">
+        <MappingFragment StoreEntitySet="FoodOrder">
+          <ScalarProperty Name="Ttl" ColumnName="Ttl" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="isPaid" ColumnName="isPaid" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="RstID" ColumnName="RstID" />
+          <ScalarProperty Name="FdOdrID" ColumnName="FdOdrID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RentBookings">
+      <EntityTypeMapping TypeName="TouristGuiderModel.RentBooking">
+        <MappingFragment StoreEntitySet="RentBooking">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="isReturned" ColumnName="isReturned" />
+          <ScalarProperty Name="TtlRt" ColumnName="TtlRt" />
+          <ScalarProperty Name="NoofDays" ColumnName="NoofDays" />
+          <ScalarProperty Name="DateReturned" ColumnName="DateReturned" />
+          <ScalarProperty Name="DateBooked" ColumnName="DateBooked" />
+          <ScalarProperty Name="RtID" ColumnName="RtID" />
+          <ScalarProperty Name="CarID" ColumnName="CarID" />
+          <ScalarProperty Name="RtBkID" ColumnName="RtBkID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoomBookings">
+      <EntityTypeMapping TypeName="TouristGuiderModel.RoomBooking">
+        <MappingFragment StoreEntitySet="RoomBooking">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="isCheckout" ColumnName="isCheckout" />
+          <ScalarProperty Name="ChlOtDt" ColumnName="ChlOtDt" />
+          <ScalarProperty Name="ChkInDt" ColumnName="ChkInDt" />
+          <ScalarProperty Name="TtlRt" ColumnName="TtlRt" />
+          <ScalarProperty Name="RmID" ColumnName="RmID" />
+          <ScalarProperty Name="HtlID" ColumnName="HtlID" />
+          <ScalarProperty Name="RmBkID" ColumnName="RmBkID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

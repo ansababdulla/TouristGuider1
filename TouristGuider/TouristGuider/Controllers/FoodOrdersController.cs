@@ -17,8 +17,19 @@ namespace TouristGuider.Controllers
         // GET: FoodOrders
         public ActionResult Index()
         {
+
             var foodOrders = db.FoodOrders.Include(f => f.User);
             return View(foodOrders.ToList());
+        }
+
+        public ActionResult Paid(int id)
+        {
+            FoodOrder fdodr = db.FoodOrders.Where(x => x.FdOdrID == id).FirstOrDefault();
+            fdodr.isPaid = true;
+            db.Entry(fdodr).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index","FoodOrders");
+
         }
 
         // GET: FoodOrders/Details/5
@@ -34,6 +45,69 @@ namespace TouristGuider.Controllers
                 return HttpNotFound();
             }
             return View(foodOrder);
+        }
+        public ActionResult Addfood(Food createVM)
+        {
+            var userid = Convert.ToInt32(Session["Usrid"]);
+            FoodOrderDetail fdodrdtls = new FoodOrderDetail();
+            Food fd = db.Foods.Where(x => x.FdID == createVM.FdID).FirstOrDefault();
+            FoodOrder fdodrobj = db.FoodOrders.Where(f => f.UserID == userid && f.isPaid == false).FirstOrDefault();
+            if(fdodrobj!=null)
+            {
+                fdodrobj.Ttl = fdodrobj.Ttl + Convert.ToInt64(fd.FdRt) * Convert.ToInt64(createVM.FdRt);//qty
+                db.Entry(fdodrobj).State = EntityState.Modified;
+                db.SaveChanges();
+                fdodrdtls.FdID = fd.FdID;
+                fdodrdtls.Qty = Convert.ToInt64(createVM.FdRt);
+                fdodrdtls.FdOdrID = fdodrobj.FdOdrID;
+                db.FoodOrderDetails.Add(fdodrdtls);
+                db.SaveChanges();
+            }
+            else
+            {
+                fdodrobj = new FoodOrder();
+                fdodrobj.Date = DateTime.Now;
+                fdodrobj.isPaid = false;
+                fdodrobj.UserID = userid;
+                fdodrobj.RstID = createVM.RstID;
+                fdodrobj.Ttl = Convert.ToInt64(fd.FdRt) * Convert.ToInt64(createVM.FdRt);
+                db.FoodOrders.Add(fdodrobj);
+                db.SaveChanges();
+                fdodrdtls.FdID = fd.FdID;
+                fdodrdtls.Qty = Convert.ToInt64(createVM.FdRt);
+                fdodrdtls.FdOdrID = fdodrobj.FdOdrID;
+                db.FoodOrderDetails.Add(fdodrdtls);
+                db.SaveChanges();
+
+            }
+            var food = db.FoodOrderDetails.Where(f => f.FdOdrID == fdodrobj.FdOdrID);
+            //FoodOrderDetail fd2 = db.FoodOrderDetails.Where(f => f.FdOdrID == fdodrobj.FdOdrID);
+            //if (fd.FdNm != null && fdodrobj.Date == null )
+            //{
+            //    fdodr.Date = DateTime.Now;
+            //    fdodr.isPaid = false;
+            //    fdodr.UserID = userid;
+            //    fdodr.Ttl = 0;
+            //    db.FoodOrders.Add(fdodr);
+            //    db.SaveChanges();
+            //    fdodrdtls.FdID = fd.FdID;
+            //    fdodrdtls.Qty = 1;
+            //    fdodrdtls.FdOdrID = fdodrobj.FdOdrID;
+            //    db.FoodOrderDetails.Add(fdodrdtls);
+            //    db.SaveChanges();
+            //    return View();
+            //}
+            //else
+            //{
+            //    fdodrdtls.Qty = fdodrdtls.Qty + 1;
+            //    db.Entry(fdodrdtls).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    fdodr.Ttl = 100;
+            //    db.Entry(fdodr).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    return View();
+            //}
+            return View();
         }
 
         // GET: FoodOrders/Create

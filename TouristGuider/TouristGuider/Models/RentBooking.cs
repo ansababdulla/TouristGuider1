@@ -16,14 +16,16 @@ namespace TouristGuider.Models
     {
         public long RtBkID { get; set; }
         public Nullable<long> CarID { get; set; }
+        public Nullable<long> RtID { get; set; }
         public Nullable<System.DateTime> DateBooked { get; set; }
         public Nullable<System.DateTime> DateReturned { get; set; }
-        public string NoofDays { get; set; }
-        public string TtlRt { get; set; }
+        public Nullable<long> NoofDays { get; set; }
+        public Nullable<long> TtlRt { get; set; }
         public Nullable<bool> isReturned { get; set; }
         public Nullable<long> UserID { get; set; }
     
         public virtual Car Car { get; set; }
+        public virtual RentCar RentCar { get; set; }
         public virtual User User { get; set; }
     }
 }

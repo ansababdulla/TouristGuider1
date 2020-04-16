@@ -17,7 +17,7 @@ namespace TouristGuider.Controllers
         // GET: FoodOrderDetails
         public ActionResult Index()
         {
-            var foodOrderDetails = db.FoodOrderDetails.Include(f => f.Food);
+            var foodOrderDetails = db.FoodOrderDetails.Include(f => f.Food).Include(f => f.FoodOrder);
             return View(foodOrderDetails.ToList());
         }
 
@@ -40,6 +40,7 @@ namespace TouristGuider.Controllers
         public ActionResult Create()
         {
             ViewBag.FdID = new SelectList(db.Foods, "FdID", "FdNm");
+            ViewBag.FdOdrID = new SelectList(db.FoodOrders, "FdOdrID", "Ttl");
             return View();
         }
 
@@ -48,7 +49,7 @@ namespace TouristGuider.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FdOdrDtID,FdID,Qty")] FoodOrderDetail foodOrderDetail)
+        public ActionResult Create([Bind(Include = "FdOdrDtID,FdOdrID,FdID,Qty")] FoodOrderDetail foodOrderDetail)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +59,7 @@ namespace TouristGuider.Controllers
             }
 
             ViewBag.FdID = new SelectList(db.Foods, "FdID", "FdNm", foodOrderDetail.FdID);
+            ViewBag.FdOdrID = new SelectList(db.FoodOrders, "FdOdrID", "Ttl", foodOrderDetail.FdOdrID);
             return View(foodOrderDetail);
         }
 
@@ -74,6 +76,7 @@ namespace TouristGuider.Controllers
                 return HttpNotFound();
             }
             ViewBag.FdID = new SelectList(db.Foods, "FdID", "FdNm", foodOrderDetail.FdID);
+            ViewBag.FdOdrID = new SelectList(db.FoodOrders, "FdOdrID", "Ttl", foodOrderDetail.FdOdrID);
             return View(foodOrderDetail);
         }
 
@@ -82,7 +85,7 @@ namespace TouristGuider.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FdOdrDtID,FdID,Qty")] FoodOrderDetail foodOrderDetail)
+        public ActionResult Edit([Bind(Include = "FdOdrDtID,FdOdrID,FdID,Qty")] FoodOrderDetail foodOrderDetail)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +94,7 @@ namespace TouristGuider.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.FdID = new SelectList(db.Foods, "FdID", "FdNm", foodOrderDetail.FdID);
+            ViewBag.FdOdrID = new SelectList(db.FoodOrders, "FdOdrID", "Ttl", foodOrderDetail.FdOdrID);
             return View(foodOrderDetail);
         }
 

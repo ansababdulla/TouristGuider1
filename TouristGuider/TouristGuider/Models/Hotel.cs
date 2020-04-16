@@ -18,6 +18,7 @@ namespace TouristGuider.Models
         public Hotel()
         {
             this.Rooms = new HashSet<Room>();
+            this.RoomBookings = new HashSet<RoomBooking>();
         }
     
         public long HtlID { get; set; }
@@ -28,5 +29,7 @@ namespace TouristGuider.Models
         public virtual Credential Credential { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Room> Rooms { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RoomBooking> RoomBookings { get; set; }
     }
 }

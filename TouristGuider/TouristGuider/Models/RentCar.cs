@@ -18,6 +18,7 @@ namespace TouristGuider.Models
         public RentCar()
         {
             this.Cars = new HashSet<Car>();
+            this.RentBookings = new HashSet<RentBooking>();
         }
     
         public long RtID { get; set; }
@@ -27,5 +28,7 @@ namespace TouristGuider.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Car> Cars { get; set; }
         public virtual Credential Credential { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RentBooking> RentBookings { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TouristGuiderModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TouristGuiderModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Car">
           <Key>
             <PropertyRef Name="CarID" />
@@ -37,18 +37,20 @@
             <PropertyRef Name="FdOdrID" />
           </Key>
           <Property Name="FdOdrID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RstID" Type="bigint" />
           <Property Name="Date" Type="date" />
           <Property Name="isPaid" Type="bit" />
           <Property Name="UserID" Type="bigint" />
-          <Property Name="Ttl" Type="varchar" MaxLength="50" />
+          <Property Name="Ttl" Type="bigint" />
         </EntityType>
         <EntityType Name="FoodOrderDetails">
           <Key>
             <PropertyRef Name="FdOdrDtID" />
           </Key>
           <Property Name="FdOdrDtID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FdOdrID" Type="bigint" />
           <Property Name="FdID" Type="bigint" />
-          <Property Name="Qty" Type="varchar" MaxLength="50" />
+          <Property Name="Qty" Type="bigint" />
         </EntityType>
         <EntityType Name="Hotel">
           <Key>
@@ -65,10 +67,11 @@
           </Key>
           <Property Name="RtBkID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CarID" Type="bigint" />
+          <Property Name="RtID" Type="bigint" />
           <Property Name="DateBooked" Type="date" />
           <Property Name="DateReturned" Type="date" />
-          <Property Name="NoofDays" Type="varchar" MaxLength="50" />
-          <Property Name="TtlRt" Type="varchar" MaxLength="50" />
+          <Property Name="NoofDays" Type="bigint" />
+          <Property Name="TtlRt" Type="bigint" />
           <Property Name="isReturned" Type="bit" />
           <Property Name="UserID" Type="bigint" />
         </EntityType>
@@ -110,8 +113,9 @@
             <PropertyRef Name="RmBkID" />
           </Key>
           <Property Name="RmBkID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HtlID" Type="bigint" />
           <Property Name="RmID" Type="bigint" />
-          <Property Name="TtlRt" Type="varchar" MaxLength="50" />
+          <Property Name="TtlRt" Type="bigint" />
           <Property Name="ChkInDt" Type="date" />
           <Property Name="ChlOtDt" Type="date" />
           <Property Name="isCheckout" Type="bit" />
@@ -161,6 +165,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FoodOrder_Restaurant">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="0..1" />
+          <End Role="FoodOrder" Type="Self.FoodOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="RstID" />
+            </Principal>
+            <Dependent Role="FoodOrder">
+              <PropertyRef Name="RstID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FoodOrder_User">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="FoodOrder" Type="Self.FoodOrder" Multiplicity="*" />
@@ -185,6 +201,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FoodOrderDetails_FoodOrder">
+          <End Role="FoodOrder" Type="Self.FoodOrder" Multiplicity="0..1" />
+          <End Role="FoodOrderDetails" Type="Self.FoodOrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FoodOrder">
+              <PropertyRef Name="FdOdrID" />
+            </Principal>
+            <Dependent Role="FoodOrderDetails">
+              <PropertyRef Name="FdOdrID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Hotel_Credential">
           <End Role="Credential" Type="Self.Credential" Multiplicity="0..1" />
           <End Role="Hotel" Type="Self.Hotel" Multiplicity="*" />
@@ -206,6 +234,18 @@
             </Principal>
             <Dependent Role="RentBooking">
               <PropertyRef Name="CarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RentBooking_RentCar">
+          <End Role="RentCar" Type="Self.RentCar" Multiplicity="0..1" />
+          <End Role="RentBooking" Type="Self.RentBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RentCar">
+              <PropertyRef Name="RtID" />
+            </Principal>
+            <Dependent Role="RentBooking">
+              <PropertyRef Name="RtID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -253,6 +293,18 @@
               <PropertyRef Name="HtlID" />
             </Principal>
             <Dependent Role="Room">
+              <PropertyRef Name="HtlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomBooking_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+          <End Role="RoomBooking" Type="Self.RoomBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HtlID" />
+            </Principal>
+            <Dependent Role="RoomBooking">
               <PropertyRef Name="HtlID" />
             </Dependent>
           </ReferentialConstraint>
@@ -307,6 +359,10 @@
             <End Role="Restaurant" EntitySet="Restaurant" />
             <End Role="Food" EntitySet="Food" />
           </AssociationSet>
+          <AssociationSet Name="FK_FoodOrder_Restaurant" Association="Self.FK_FoodOrder_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="FoodOrder" EntitySet="FoodOrder" />
+          </AssociationSet>
           <AssociationSet Name="FK_FoodOrder_User" Association="Self.FK_FoodOrder_User">
             <End Role="User" EntitySet="User" />
             <End Role="FoodOrder" EntitySet="FoodOrder" />
@@ -315,12 +371,20 @@
             <End Role="Food" EntitySet="Food" />
             <End Role="FoodOrderDetails" EntitySet="FoodOrderDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_FoodOrderDetails_FoodOrder" Association="Self.FK_FoodOrderDetails_FoodOrder">
+            <End Role="FoodOrder" EntitySet="FoodOrder" />
+            <End Role="FoodOrderDetails" EntitySet="FoodOrderDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_Hotel_Credential" Association="Self.FK_Hotel_Credential">
             <End Role="Credential" EntitySet="Credential" />
             <End Role="Hotel" EntitySet="Hotel" />
           </AssociationSet>
           <AssociationSet Name="FK_RentBooking_Car" Association="Self.FK_RentBooking_Car">
             <End Role="Car" EntitySet="Car" />
+            <End Role="RentBooking" EntitySet="RentBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RentBooking_RentCar" Association="Self.FK_RentBooking_RentCar">
+            <End Role="RentCar" EntitySet="RentCar" />
             <End Role="RentBooking" EntitySet="RentBooking" />
           </AssociationSet>
           <AssociationSet Name="FK_RentBooking_User" Association="Self.FK_RentBooking_User">
@@ -339,6 +403,10 @@
             <End Role="Hotel" EntitySet="Hotel" />
             <End Role="Room" EntitySet="Room" />
           </AssociationSet>
+          <AssociationSet Name="FK_RoomBooking_Hotel" Association="Self.FK_RoomBooking_Hotel">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="RoomBooking" EntitySet="RoomBooking" />
+          </AssociationSet>
           <AssociationSet Name="FK_RoomBooking_Room" Association="Self.FK_RoomBooking_Room">
             <End Role="User" EntitySet="User" />
             <End Role="RoomBooking" EntitySet="RoomBooking" />
@@ -348,8 +416,7 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TouristGuiderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -362,7 +429,7 @@
           <Property Name="CarNm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CarRt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="RentCar" Relationship="Self.FK_Car_RentCar" FromRole="Car" ToRole="RentCar" />
-          <NavigationProperty Name="RentBookings" Relationship="Self.FK_RentBooking_Car" FromRole="Car" ToRole="RentBooking" />
+          <NavigationProperty Name="RentBookings" Relationship="TouristGuiderModel.FK_RentBooking_Car" FromRole="Car" ToRole="RentBooking" />
         </EntityType>
         <EntityType Name="Credential">
           <Key>
@@ -387,27 +454,7 @@
           <Property Name="FdNm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FdRt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Restaurant" Relationship="Self.FK_Food_Restaurant" FromRole="Food" ToRole="Restaurant" />
-          <NavigationProperty Name="FoodOrderDetails" Relationship="Self.FK_FoodOrderDetails_Food" FromRole="Food" ToRole="FoodOrderDetails" />
-        </EntityType>
-        <EntityType Name="FoodOrder">
-          <Key>
-            <PropertyRef Name="FdOdrID" />
-          </Key>
-          <Property Name="FdOdrID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="isPaid" Type="Boolean" />
-          <Property Name="UserID" Type="Int64" />
-          <Property Name="Ttl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK_FoodOrder_User" FromRole="FoodOrder" ToRole="User" />
-        </EntityType>
-        <EntityType Name="FoodOrderDetail">
-          <Key>
-            <PropertyRef Name="FdOdrDtID" />
-          </Key>
-          <Property Name="FdOdrDtID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FdID" Type="Int64" />
-          <Property Name="Qty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Food" Relationship="Self.FK_FoodOrderDetails_Food" FromRole="FoodOrderDetails" ToRole="Food" />
+          <NavigationProperty Name="FoodOrderDetails" Relationship="TouristGuiderModel.FK_FoodOrderDetails_Food" FromRole="Food" ToRole="FoodOrderDetail" />
         </EntityType>
         <EntityType Name="Hotel">
           <Key>
@@ -419,21 +466,7 @@
           <Property Name="HtlLctn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Credential" Relationship="Self.FK_Hotel_Credential" FromRole="Hotel" ToRole="Credential" />
           <NavigationProperty Name="Rooms" Relationship="Self.FK_Room_Hotel" FromRole="Hotel" ToRole="Room" />
-        </EntityType>
-        <EntityType Name="RentBooking">
-          <Key>
-            <PropertyRef Name="RtBkID" />
-          </Key>
-          <Property Name="RtBkID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CarID" Type="Int64" />
-          <Property Name="DateBooked" Type="DateTime" Precision="0" />
-          <Property Name="DateReturned" Type="DateTime" Precision="0" />
-          <Property Name="NoofDays" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TtlRt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="isReturned" Type="Boolean" />
-          <Property Name="UserID" Type="Int64" />
-          <NavigationProperty Name="Car" Relationship="Self.FK_RentBooking_Car" FromRole="RentBooking" ToRole="Car" />
-          <NavigationProperty Name="User" Relationship="Self.FK_RentBooking_User" FromRole="RentBooking" ToRole="User" />
+          <NavigationProperty Name="RoomBookings" Relationship="TouristGuiderModel.FK_RoomBooking_Hotel" FromRole="Hotel" ToRole="RoomBooking" />
         </EntityType>
         <EntityType Name="RentCar">
           <Key>
@@ -444,6 +477,7 @@
           <Property Name="RtNm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Cars" Relationship="Self.FK_Car_RentCar" FromRole="RentCar" ToRole="Car" />
           <NavigationProperty Name="Credential" Relationship="Self.FK_RentCar_Credential" FromRole="RentCar" ToRole="Credential" />
+          <NavigationProperty Name="RentBookings" Relationship="TouristGuiderModel.FK_RentBooking_RentCar" FromRole="RentCar" ToRole="RentBooking" />
         </EntityType>
         <EntityType Name="Restaurant">
           <Key>
@@ -455,6 +489,7 @@
           <Property Name="RstLctn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Credential" Relationship="Self.FK_Restaurant_Credential" FromRole="Restaurant" ToRole="Credential" />
           <NavigationProperty Name="Foods" Relationship="Self.FK_Food_Restaurant" FromRole="Restaurant" ToRole="Food" />
+          <NavigationProperty Name="FoodOrders" Relationship="TouristGuiderModel.FK_FoodOrder_Restaurant" FromRole="Restaurant" ToRole="FoodOrder" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -474,19 +509,6 @@
           <Property Name="RmRt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Hotel" Relationship="Self.FK_Room_Hotel" FromRole="Room" ToRole="Hotel" />
         </EntityType>
-        <EntityType Name="RoomBooking">
-          <Key>
-            <PropertyRef Name="RmBkID" />
-          </Key>
-          <Property Name="RmBkID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RmID" Type="Int64" />
-          <Property Name="TtlRt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ChkInDt" Type="DateTime" Precision="0" />
-          <Property Name="ChlOtDt" Type="DateTime" Precision="0" />
-          <Property Name="isCheckout" Type="Boolean" />
-          <Property Name="UserID" Type="Int64" />
-          <NavigationProperty Name="User" Relationship="Self.FK_RoomBooking_Room" FromRole="RoomBooking" ToRole="User" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserID" />
@@ -495,9 +517,9 @@
           <Property Name="CredID" Type="Int64" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Credential" Relationship="Self.FK_User_Credential" FromRole="User" ToRole="Credential" />
-          <NavigationProperty Name="FoodOrders" Relationship="Self.FK_FoodOrder_User" FromRole="User" ToRole="FoodOrder" />
-          <NavigationProperty Name="RentBookings" Relationship="Self.FK_RentBooking_User" FromRole="User" ToRole="RentBooking" />
-          <NavigationProperty Name="RoomBookings" Relationship="Self.FK_RoomBooking_Room" FromRole="User" ToRole="RoomBooking" />
+          <NavigationProperty Name="FoodOrders" Relationship="TouristGuiderModel.FK_FoodOrder_User" FromRole="User" ToRole="FoodOrder" />
+          <NavigationProperty Name="RentBookings" Relationship="TouristGuiderModel.FK_RentBooking_User" FromRole="User" ToRole="RentBooking" />
+          <NavigationProperty Name="RoomBookings" Relationship="TouristGuiderModel.FK_RoomBooking_Room" FromRole="User" ToRole="RoomBooking" />
         </EntityType>
         <Association Name="FK_Car_RentCar">
           <End Role="RentCar" Type="Self.RentCar" Multiplicity="0..1" />
@@ -508,18 +530,6 @@
             </Principal>
             <Dependent Role="Car">
               <PropertyRef Name="RtID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RentBooking_Car">
-          <End Role="Car" Type="Self.Car" Multiplicity="0..1" />
-          <End Role="RentBooking" Type="Self.RentBooking" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Car">
-              <PropertyRef Name="CarID" />
-            </Principal>
-            <Dependent Role="RentBooking">
-              <PropertyRef Name="CarID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -595,30 +605,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_FoodOrderDetails_Food">
-          <End Role="Food" Type="Self.Food" Multiplicity="0..1" />
-          <End Role="FoodOrderDetails" Type="Self.FoodOrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Food">
-              <PropertyRef Name="FdID" />
-            </Principal>
-            <Dependent Role="FoodOrderDetails">
-              <PropertyRef Name="FdID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FoodOrder_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="FoodOrder" Type="Self.FoodOrder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="FoodOrder">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Room_Hotel">
           <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
           <End Role="Room" Type="Self.Room" Multiplicity="*" />
@@ -631,51 +617,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RentBooking_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="RentBooking" Type="Self.RentBooking" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="RentBooking">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RoomBooking_Room">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="RoomBooking" Type="Self.RoomBooking" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="RoomBooking">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cars" EntityType="Self.Car" />
           <EntitySet Name="Credentials" EntityType="Self.Credential" />
           <EntitySet Name="Foods" EntityType="Self.Food" />
-          <EntitySet Name="FoodOrders" EntityType="Self.FoodOrder" />
-          <EntitySet Name="FoodOrderDetails" EntityType="Self.FoodOrderDetail" />
           <EntitySet Name="Hotels" EntityType="Self.Hotel" />
-          <EntitySet Name="RentBookings" EntityType="Self.RentBooking" />
           <EntitySet Name="RentCars" EntityType="Self.RentCar" />
           <EntitySet Name="Restaurants" EntityType="Self.Restaurant" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="Rooms" EntityType="Self.Room" />
-          <EntitySet Name="RoomBookings" EntityType="Self.RoomBooking" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_Car_RentCar" Association="Self.FK_Car_RentCar">
             <End Role="RentCar" EntitySet="RentCars" />
             <End Role="Car" EntitySet="Cars" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RentBooking_Car" Association="Self.FK_RentBooking_Car">
-            <End Role="Car" EntitySet="Cars" />
-            <End Role="RentBooking" EntitySet="RentBookings" />
           </AssociationSet>
           <AssociationSet Name="FK_Credential_Role" Association="Self.FK_Credential_Role">
             <End Role="Role" EntitySet="Roles" />
@@ -701,27 +655,216 @@
             <End Role="Restaurant" EntitySet="Restaurants" />
             <End Role="Food" EntitySet="Foods" />
           </AssociationSet>
-          <AssociationSet Name="FK_FoodOrderDetails_Food" Association="Self.FK_FoodOrderDetails_Food">
-            <End Role="Food" EntitySet="Foods" />
-            <End Role="FoodOrderDetails" EntitySet="FoodOrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FoodOrder_User" Association="Self.FK_FoodOrder_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="FoodOrder" EntitySet="FoodOrders" />
-          </AssociationSet>
           <AssociationSet Name="FK_Room_Hotel" Association="Self.FK_Room_Hotel">
             <End Role="Hotel" EntitySet="Hotels" />
             <End Role="Room" EntitySet="Rooms" />
           </AssociationSet>
-          <AssociationSet Name="FK_RentBooking_User" Association="Self.FK_RentBooking_User">
+          <EntitySet Name="FoodOrderDetails" EntityType="TouristGuiderModel.FoodOrderDetail" />
+          <AssociationSet Name="FK_FoodOrderDetails_Food" Association="TouristGuiderModel.FK_FoodOrderDetails_Food">
+            <End Role="Food" EntitySet="Foods" />
+            <End Role="FoodOrderDetail" EntitySet="FoodOrderDetails" />
+          </AssociationSet>
+          <EntitySet Name="FoodOrders" EntityType="TouristGuiderModel.FoodOrder" />
+          <EntitySet Name="RentBookings" EntityType="TouristGuiderModel.RentBooking" />
+          <EntitySet Name="RoomBookings" EntityType="TouristGuiderModel.RoomBooking" />
+          <AssociationSet Name="FK_RentBooking_Car" Association="TouristGuiderModel.FK_RentBooking_Car">
+            <End Role="Car" EntitySet="Cars" />
+            <End Role="RentBooking" EntitySet="RentBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoodOrder_Restaurant" Association="TouristGuiderModel.FK_FoodOrder_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurants" />
+            <End Role="FoodOrder" EntitySet="FoodOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoodOrder_User" Association="TouristGuiderModel.FK_FoodOrder_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="FoodOrder" EntitySet="FoodOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoodOrderDetails_FoodOrder" Association="TouristGuiderModel.FK_FoodOrderDetails_FoodOrder">
+            <End Role="FoodOrder" EntitySet="FoodOrders" />
+            <End Role="FoodOrderDetail" EntitySet="FoodOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomBooking_Hotel" Association="TouristGuiderModel.FK_RoomBooking_Hotel">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="RoomBooking" EntitySet="RoomBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RentBooking_RentCar" Association="TouristGuiderModel.FK_RentBooking_RentCar">
+            <End Role="RentCar" EntitySet="RentCars" />
+            <End Role="RentBooking" EntitySet="RentBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RentBooking_User" Association="TouristGuiderModel.FK_RentBooking_User">
             <End Role="User" EntitySet="Users" />
             <End Role="RentBooking" EntitySet="RentBookings" />
           </AssociationSet>
-          <AssociationSet Name="FK_RoomBooking_Room" Association="Self.FK_RoomBooking_Room">
+          <AssociationSet Name="FK_RoomBooking_Room" Association="TouristGuiderModel.FK_RoomBooking_Room">
             <End Role="User" EntitySet="Users" />
             <End Role="RoomBooking" EntitySet="RoomBookings" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="FoodOrderDetail">
+          <Key>
+            <PropertyRef Name="FdOdrDtID" />
+          </Key>
+          <Property Name="FdOdrDtID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FdOdrID" Type="Int64" />
+          <Property Name="FdID" Type="Int64" />
+          <Property Name="Qty" Type="Int64" />
+          <NavigationProperty Name="Food" Relationship="TouristGuiderModel.FK_FoodOrderDetails_Food" FromRole="FoodOrderDetail" ToRole="Food" />
+          <NavigationProperty Name="FoodOrder" Relationship="TouristGuiderModel.FK_FoodOrderDetails_FoodOrder" FromRole="FoodOrderDetail" ToRole="FoodOrder" />
+        </EntityType>
+        <Association Name="FK_FoodOrderDetails_Food">
+          <End Type="TouristGuiderModel.Food" Role="Food" Multiplicity="0..1" />
+          <End Type="TouristGuiderModel.FoodOrderDetail" Role="FoodOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food">
+              <PropertyRef Name="FdID" />
+            </Principal>
+            <Dependent Role="FoodOrderDetail">
+              <PropertyRef Name="FdID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FoodOrder">
+          <Key>
+            <PropertyRef Name="FdOdrID" />
+          </Key>
+          <Property Name="FdOdrID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RstID" Type="Int64" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="isPaid" Type="Boolean" />
+          <Property Name="UserID" Type="Int64" />
+          <Property Name="Ttl" Type="Int64" />
+          <NavigationProperty Name="Restaurant" Relationship="TouristGuiderModel.FK_FoodOrder_Restaurant" FromRole="FoodOrder" ToRole="Restaurant" />
+          <NavigationProperty Name="User" Relationship="TouristGuiderModel.FK_FoodOrder_User" FromRole="FoodOrder" ToRole="User" />
+          <NavigationProperty Name="FoodOrderDetails" Relationship="TouristGuiderModel.FK_FoodOrderDetails_FoodOrder" FromRole="FoodOrder" ToRole="FoodOrderDetail" />
+        </EntityType>
+        <EntityType Name="RentBooking">
+          <Key>
+            <PropertyRef Name="RtBkID" />
+          </Key>
+          <Property Name="RtBkID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarID" Type="Int64" />
+          <Property Name="RtID" Type="Int64" />
+          <Property Name="DateBooked" Type="DateTime" Precision="0" />
+          <Property Name="DateReturned" Type="DateTime" Precision="0" />
+          <Property Name="NoofDays" Type="Int64" />
+          <Property Name="TtlRt" Type="Int64" />
+          <Property Name="isReturned" Type="Boolean" />
+          <Property Name="UserID" Type="Int64" />
+          <NavigationProperty Name="Car" Relationship="TouristGuiderModel.FK_RentBooking_Car" FromRole="RentBooking" ToRole="Car" />
+          <NavigationProperty Name="RentCar" Relationship="TouristGuiderModel.FK_RentBooking_RentCar" FromRole="RentBooking" ToRole="RentCar" />
+          <NavigationProperty Name="User" Relationship="TouristGuiderModel.FK_RentBooking_User" FromRole="RentBooking" ToRole="User" />
+        </EntityType>
+        <EntityType Name="RoomBooking">
+          <Key>
+            <PropertyRef Name="RmBkID" />
+          </Key>
+          <Property Name="RmBkID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HtlID" Type="Int64" />
+          <Property Name="RmID" Type="Int64" />
+          <Property Name="TtlRt" Type="Int64" />
+          <Property Name="ChkInDt" Type="DateTime" Precision="0" />
+          <Property Name="ChlOtDt" Type="DateTime" Precision="0" />
+          <Property Name="isCheckout" Type="Boolean" />
+          <Property Name="UserID" Type="Int64" />
+          <NavigationProperty Name="Hotel" Relationship="TouristGuiderModel.FK_RoomBooking_Hotel" FromRole="RoomBooking" ToRole="Hotel" />
+          <NavigationProperty Name="User" Relationship="TouristGuiderModel.FK_RoomBooking_Room" FromRole="RoomBooking" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_RentBooking_Car">
+          <End Type="TouristGuiderModel.Car" Role="Car" Multiplicity="0..1" />
+          <End Type="TouristGuiderModel.RentBooking" Role="RentBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="CarID" />
+            </Principal>
+            <Dependent Role="RentBooking">
+              <PropertyRef Name="CarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoodOrder_Restaurant">
+          <End Type="TouristGuiderModel.Restaurant" Role="Restaurant" Multiplicity="0..1" />
+          <End Type="TouristGuiderModel.FoodOrder" Role="FoodOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="RstID" />
+            </Principal>
+            <Dependent Role="FoodOrder">
+              <PropertyRef Name="RstID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoodOrder_User">
+          <End Type="TouristGuiderModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="TouristGuiderModel.FoodOrder" Role="FoodOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="FoodOrder">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoodOrderDetails_FoodOrder">
+          <End Type="TouristGuiderModel.FoodOrder" Role="FoodOrder" Multiplicity="0..1" />
+          <End Type="TouristGuiderModel.FoodOrderDetail" Role="FoodOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FoodOrder">
+              <PropertyRef Name="FdOdrID" />
+            </Principal>
+            <Dependent Role="FoodOrderDetail">
+              <PropertyRef Name="FdOdrID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomBooking_Hotel">
+          <End Type="TouristGuiderModel.Hotel" Role="Hotel" Multiplicity="0..1" />
+          <End Type="TouristGuiderModel.RoomBooking" Role="RoomBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HtlID" />
+            </Principal>
+            <Dependent Role="RoomBooking">
+              <PropertyRef Name="HtlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RentBooking_RentCar">
+          <End Type="TouristGuiderModel.RentCar" Role="RentCar" Multiplicity="0..1" />
+          <End Type="TouristGuiderModel.RentBooking" Role="RentBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RentCar">
+              <PropertyRef Name="RtID" />
+            </Principal>
+            <Dependent Role="RentBooking">
+              <PropertyRef Name="RtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RentBooking_User">
+          <End Type="TouristGuiderModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="TouristGuiderModel.RentBooking" Role="RentBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="RentBooking">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomBooking_Room">
+          <End Type="TouristGuiderModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="TouristGuiderModel.RoomBooking" Role="RoomBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="RoomBooking">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -758,26 +901,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FoodOrders">
-            <EntityTypeMapping TypeName="TouristGuiderModel.FoodOrder">
-              <MappingFragment StoreEntitySet="FoodOrder">
-                <ScalarProperty Name="FdOdrID" ColumnName="FdOdrID" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="isPaid" ColumnName="isPaid" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="Ttl" ColumnName="Ttl" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FoodOrderDetails">
-            <EntityTypeMapping TypeName="TouristGuiderModel.FoodOrderDetail">
-              <MappingFragment StoreEntitySet="FoodOrderDetails">
-                <ScalarProperty Name="FdOdrDtID" ColumnName="FdOdrDtID" />
-                <ScalarProperty Name="FdID" ColumnName="FdID" />
-                <ScalarProperty Name="Qty" ColumnName="Qty" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Hotels">
             <EntityTypeMapping TypeName="TouristGuiderModel.Hotel">
               <MappingFragment StoreEntitySet="Hotel">
@@ -785,20 +908,6 @@
                 <ScalarProperty Name="CredID" ColumnName="CredID" />
                 <ScalarProperty Name="HtlNm" ColumnName="HtlNm" />
                 <ScalarProperty Name="HtlLctn" ColumnName="HtlLctn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RentBookings">
-            <EntityTypeMapping TypeName="TouristGuiderModel.RentBooking">
-              <MappingFragment StoreEntitySet="RentBooking">
-                <ScalarProperty Name="RtBkID" ColumnName="RtBkID" />
-                <ScalarProperty Name="CarID" ColumnName="CarID" />
-                <ScalarProperty Name="DateBooked" ColumnName="DateBooked" />
-                <ScalarProperty Name="DateReturned" ColumnName="DateReturned" />
-                <ScalarProperty Name="NoofDays" ColumnName="NoofDays" />
-                <ScalarProperty Name="TtlRt" ColumnName="TtlRt" />
-                <ScalarProperty Name="isReturned" ColumnName="isReturned" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -839,25 +948,63 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RoomBookings">
-            <EntityTypeMapping TypeName="TouristGuiderModel.RoomBooking">
-              <MappingFragment StoreEntitySet="RoomBooking">
-                <ScalarProperty Name="RmBkID" ColumnName="RmBkID" />
-                <ScalarProperty Name="RmID" ColumnName="RmID" />
-                <ScalarProperty Name="TtlRt" ColumnName="TtlRt" />
-                <ScalarProperty Name="ChkInDt" ColumnName="ChkInDt" />
-                <ScalarProperty Name="ChlOtDt" ColumnName="ChlOtDt" />
-                <ScalarProperty Name="isCheckout" ColumnName="isCheckout" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="TouristGuiderModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="CredID" ColumnName="CredID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FoodOrderDetails">
+            <EntityTypeMapping TypeName="TouristGuiderModel.FoodOrderDetail">
+              <MappingFragment StoreEntitySet="FoodOrderDetails">
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="FdID" ColumnName="FdID" />
+                <ScalarProperty Name="FdOdrID" ColumnName="FdOdrID" />
+                <ScalarProperty Name="FdOdrDtID" ColumnName="FdOdrDtID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FoodOrders">
+            <EntityTypeMapping TypeName="TouristGuiderModel.FoodOrder">
+              <MappingFragment StoreEntitySet="FoodOrder">
+                <ScalarProperty Name="Ttl" ColumnName="Ttl" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="isPaid" ColumnName="isPaid" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="RstID" ColumnName="RstID" />
+                <ScalarProperty Name="FdOdrID" ColumnName="FdOdrID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RentBookings">
+            <EntityTypeMapping TypeName="TouristGuiderModel.RentBooking">
+              <MappingFragment StoreEntitySet="RentBooking">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="isReturned" ColumnName="isReturned" />
+                <ScalarProperty Name="TtlRt" ColumnName="TtlRt" />
+                <ScalarProperty Name="NoofDays" ColumnName="NoofDays" />
+                <ScalarProperty Name="DateReturned" ColumnName="DateReturned" />
+                <ScalarProperty Name="DateBooked" ColumnName="DateBooked" />
+                <ScalarProperty Name="RtID" ColumnName="RtID" />
+                <ScalarProperty Name="CarID" ColumnName="CarID" />
+                <ScalarProperty Name="RtBkID" ColumnName="RtBkID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomBookings">
+            <EntityTypeMapping TypeName="TouristGuiderModel.RoomBooking">
+              <MappingFragment StoreEntitySet="RoomBooking">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="isCheckout" ColumnName="isCheckout" />
+                <ScalarProperty Name="ChlOtDt" ColumnName="ChlOtDt" />
+                <ScalarProperty Name="ChkInDt" ColumnName="ChkInDt" />
+                <ScalarProperty Name="TtlRt" ColumnName="TtlRt" />
+                <ScalarProperty Name="RmID" ColumnName="RmID" />
+                <ScalarProperty Name="HtlID" ColumnName="HtlID" />
+                <ScalarProperty Name="RmBkID" ColumnName="RmBkID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

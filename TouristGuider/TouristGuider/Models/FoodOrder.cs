@@ -14,12 +14,22 @@ namespace TouristGuider.Models
     
     public partial class FoodOrder
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public FoodOrder()
+        {
+            this.FoodOrderDetails = new HashSet<FoodOrderDetail>();
+        }
+    
         public long FdOdrID { get; set; }
+        public Nullable<long> RstID { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<bool> isPaid { get; set; }
         public Nullable<long> UserID { get; set; }
-        public string Ttl { get; set; }
+        public Nullable<long> Ttl { get; set; }
     
+        public virtual Restaurant Restaurant { get; set; }
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FoodOrderDetail> FoodOrderDetails { get; set; }
     }
 }

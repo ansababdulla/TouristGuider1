@@ -80,3 +80,4 @@ E:\MainProject\TouristGuider1\TouristGuider\TouristGuider\bin\Microsoft.CodeDom.
 E:\MainProject\TouristGuider1\TouristGuider\TouristGuider\obj\Debug\TouristGuider.csproj.CopyComplete
 E:\MainProject\TouristGuider1\TouristGuider\TouristGuider\obj\Debug\TouristGuider.dll
 E:\MainProject\TouristGuider1\TouristGuider\TouristGuider\obj\Debug\TouristGuider.pdb
+E:\MainProject\TouristGuider1\TouristGuider\TouristGuider\obj\Debug\TouristGuider.csprojAssemblyReference.cache

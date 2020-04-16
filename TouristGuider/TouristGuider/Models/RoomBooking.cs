@@ -15,13 +15,15 @@ namespace TouristGuider.Models
     public partial class RoomBooking
     {
         public long RmBkID { get; set; }
+        public Nullable<long> HtlID { get; set; }
         public Nullable<long> RmID { get; set; }
-        public string TtlRt { get; set; }
+        public Nullable<long> TtlRt { get; set; }
         public Nullable<System.DateTime> ChkInDt { get; set; }
         public Nullable<System.DateTime> ChlOtDt { get; set; }
         public Nullable<bool> isCheckout { get; set; }
         public Nullable<long> UserID { get; set; }
     
+        public virtual Hotel Hotel { get; set; }
         public virtual User User { get; set; }
     }
 }

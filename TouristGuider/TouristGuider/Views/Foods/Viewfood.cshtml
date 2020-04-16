@@ -1,0 +1,76 @@
+﻿@model List<TouristGuider.Models.Food>
+
+@{
+    ViewBag.Title = "Index";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Food Name")
+            </th>
+            <th>
+                @Html.DisplayName("Food Rate")
+            </th>
+            <th>
+               
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FdNm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FdRt)
+        </td>
+
+        @using (Html.BeginForm("Addfood", "FoodOrders", FormMethod.Post))
+        {
+            @Html.HiddenFor(model => item.FdID)
+            <td>
+                <input type="text" name="FdRt"  />
+                <input type="hidden" name="FdID" value="@item.FdID" />
+                <input type="hidden" name="RstID" value="@item.RstID" />
+            </td>
+            <td>
+                <input type="submit" />
+                @*<button id="button">Click Me</button>*@
+                @*@Html.ActionLink("Add to Plate", "Addfood", "FoodOrders", new { id = item.FdID }, null)
+                @Html.ActionLink("Add to Plate", "Addfood", "Foods", new { id = "myLink" },null)*@
+
+            </td>
+        }
+    </tr>
+        }
+
+
+    </table>
+    @*@section Scripts {
+        <script type="text/javascript">
+            $("#button").click(function () {
+                var qty = $("#qty").val();
+                var id = 10;
+                alert(qty);
+                var url = '@Url.Action("Addfood", "Foods")' + "/" + qty; 
+                window.location.href = url;
+
+            });
+        </script>
+
+    }*@
+</body>
+</html>
+
+

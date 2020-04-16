@@ -32,18 +32,20 @@
       <PropertyRef Name="FdOdrID" />
     </Key>
     <Property Name="FdOdrID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RstID" Type="bigint" />
     <Property Name="Date" Type="date" />
     <Property Name="isPaid" Type="bit" />
     <Property Name="UserID" Type="bigint" />
-    <Property Name="Ttl" Type="varchar" MaxLength="50" />
+    <Property Name="Ttl" Type="bigint" />
   </EntityType>
   <EntityType Name="FoodOrderDetails">
     <Key>
       <PropertyRef Name="FdOdrDtID" />
     </Key>
     <Property Name="FdOdrDtID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FdOdrID" Type="bigint" />
     <Property Name="FdID" Type="bigint" />
-    <Property Name="Qty" Type="varchar" MaxLength="50" />
+    <Property Name="Qty" Type="bigint" />
   </EntityType>
   <EntityType Name="Hotel">
     <Key>
@@ -60,10 +62,11 @@
     </Key>
     <Property Name="RtBkID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CarID" Type="bigint" />
+    <Property Name="RtID" Type="bigint" />
     <Property Name="DateBooked" Type="date" />
     <Property Name="DateReturned" Type="date" />
-    <Property Name="NoofDays" Type="varchar" MaxLength="50" />
-    <Property Name="TtlRt" Type="varchar" MaxLength="50" />
+    <Property Name="NoofDays" Type="bigint" />
+    <Property Name="TtlRt" Type="bigint" />
     <Property Name="isReturned" Type="bit" />
     <Property Name="UserID" Type="bigint" />
   </EntityType>
@@ -105,8 +108,9 @@
       <PropertyRef Name="RmBkID" />
     </Key>
     <Property Name="RmBkID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HtlID" Type="bigint" />
     <Property Name="RmID" Type="bigint" />
-    <Property Name="TtlRt" Type="varchar" MaxLength="50" />
+    <Property Name="TtlRt" Type="bigint" />
     <Property Name="ChkInDt" Type="date" />
     <Property Name="ChlOtDt" Type="date" />
     <Property Name="isCheckout" Type="bit" />
@@ -156,6 +160,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_FoodOrder_Restaurant">
+    <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="0..1" />
+    <End Role="FoodOrder" Type="Self.FoodOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurant">
+        <PropertyRef Name="RstID" />
+      </Principal>
+      <Dependent Role="FoodOrder">
+        <PropertyRef Name="RstID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_FoodOrder_User">
     <End Role="User" Type="Self.User" Multiplicity="0..1" />
     <End Role="FoodOrder" Type="Self.FoodOrder" Multiplicity="*" />
@@ -180,6 +196,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_FoodOrderDetails_FoodOrder">
+    <End Role="FoodOrder" Type="Self.FoodOrder" Multiplicity="0..1" />
+    <End Role="FoodOrderDetails" Type="Self.FoodOrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FoodOrder">
+        <PropertyRef Name="FdOdrID" />
+      </Principal>
+      <Dependent Role="FoodOrderDetails">
+        <PropertyRef Name="FdOdrID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Hotel_Credential">
     <End Role="Credential" Type="Self.Credential" Multiplicity="0..1" />
     <End Role="Hotel" Type="Self.Hotel" Multiplicity="*" />
@@ -201,6 +229,18 @@
       </Principal>
       <Dependent Role="RentBooking">
         <PropertyRef Name="CarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RentBooking_RentCar">
+    <End Role="RentCar" Type="Self.RentCar" Multiplicity="0..1" />
+    <End Role="RentBooking" Type="Self.RentBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RentCar">
+        <PropertyRef Name="RtID" />
+      </Principal>
+      <Dependent Role="RentBooking">
+        <PropertyRef Name="RtID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -248,6 +288,18 @@
         <PropertyRef Name="HtlID" />
       </Principal>
       <Dependent Role="Room">
+        <PropertyRef Name="HtlID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoomBooking_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+    <End Role="RoomBooking" Type="Self.RoomBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="HtlID" />
+      </Principal>
+      <Dependent Role="RoomBooking">
         <PropertyRef Name="HtlID" />
       </Dependent>
     </ReferentialConstraint>
@@ -302,6 +354,10 @@
       <End Role="Restaurant" EntitySet="Restaurant" />
       <End Role="Food" EntitySet="Food" />
     </AssociationSet>
+    <AssociationSet Name="FK_FoodOrder_Restaurant" Association="Self.FK_FoodOrder_Restaurant">
+      <End Role="Restaurant" EntitySet="Restaurant" />
+      <End Role="FoodOrder" EntitySet="FoodOrder" />
+    </AssociationSet>
     <AssociationSet Name="FK_FoodOrder_User" Association="Self.FK_FoodOrder_User">
       <End Role="User" EntitySet="User" />
       <End Role="FoodOrder" EntitySet="FoodOrder" />
@@ -310,12 +366,20 @@
       <End Role="Food" EntitySet="Food" />
       <End Role="FoodOrderDetails" EntitySet="FoodOrderDetails" />
     </AssociationSet>
+    <AssociationSet Name="FK_FoodOrderDetails_FoodOrder" Association="Self.FK_FoodOrderDetails_FoodOrder">
+      <End Role="FoodOrder" EntitySet="FoodOrder" />
+      <End Role="FoodOrderDetails" EntitySet="FoodOrderDetails" />
+    </AssociationSet>
     <AssociationSet Name="FK_Hotel_Credential" Association="Self.FK_Hotel_Credential">
       <End Role="Credential" EntitySet="Credential" />
       <End Role="Hotel" EntitySet="Hotel" />
     </AssociationSet>
     <AssociationSet Name="FK_RentBooking_Car" Association="Self.FK_RentBooking_Car">
       <End Role="Car" EntitySet="Car" />
+      <End Role="RentBooking" EntitySet="RentBooking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RentBooking_RentCar" Association="Self.FK_RentBooking_RentCar">
+      <End Role="RentCar" EntitySet="RentCar" />
       <End Role="RentBooking" EntitySet="RentBooking" />
     </AssociationSet>
     <AssociationSet Name="FK_RentBooking_User" Association="Self.FK_RentBooking_User">
@@ -333,6 +397,10 @@
     <AssociationSet Name="FK_Room_Hotel" Association="Self.FK_Room_Hotel">
       <End Role="Hotel" EntitySet="Hotel" />
       <End Role="Room" EntitySet="Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoomBooking_Hotel" Association="Self.FK_RoomBooking_Hotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="RoomBooking" EntitySet="RoomBooking" />
     </AssociationSet>
     <AssociationSet Name="FK_RoomBooking_Room" Association="Self.FK_RoomBooking_Room">
       <End Role="User" EntitySet="User" />

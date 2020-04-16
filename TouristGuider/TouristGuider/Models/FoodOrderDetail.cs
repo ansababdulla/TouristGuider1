@@ -15,9 +15,11 @@ namespace TouristGuider.Models
     public partial class FoodOrderDetail
     {
         public long FdOdrDtID { get; set; }
+        public Nullable<long> FdOdrID { get; set; }
         public Nullable<long> FdID { get; set; }
-        public string Qty { get; set; }
+        public Nullable<long> Qty { get; set; }
     
         public virtual Food Food { get; set; }
+        public virtual FoodOrder FoodOrder { get; set; }
     }
 }
