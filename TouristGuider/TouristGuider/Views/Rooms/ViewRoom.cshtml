@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TouristGuider.Models.Room>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RmNm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RmRt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hotel.HtlNm)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RmNm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RmRt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hotel.HtlNm)
+            </td>
+            <td>
+                @Html.ActionLink("Book this room", "AddRoom", "RoomBookings", new { rmid = item.RmID, htlid = item.HtlID }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+@using (Html.BeginForm("Userview", "RoomBookings", FormMethod.Post))
+{
+
+    <input type="submit" value="Checkout" />
+}

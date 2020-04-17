@@ -33,31 +33,34 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RmID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TtlRt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChkInDt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChlOtDt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isCheckout)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RmBkID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RmBkID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RmBkID })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.RmID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TtlRt)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ChkInDt)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ChlOtDt)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.isCheckout)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.User.Name)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.RmBkID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.RmBkID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.RmBkID })
+    </td>
+    <td>
+        @Html.ActionLink("Paid", "Paid", new { id = item.RmBkID })
+    </td>
+</tr>
 }
 
 </table>

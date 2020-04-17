@@ -333,6 +333,10 @@
     <Content Include="Views\RoomBookings\Details.cshtml" />
     <Content Include="Views\RoomBookings\Edit.cshtml" />
     <Content Include="Views\RoomBookings\Index.cshtml" />
+    <Content Include="Views\FoodOrders\Userview.cshtml" />
+    <Content Include="Views\Rooms\ViewRoom.cshtml" />
+    <Content Include="Views\RoomBookings\AddRoom.cshtml" />
+    <Content Include="Views\RoomBookings\Userview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

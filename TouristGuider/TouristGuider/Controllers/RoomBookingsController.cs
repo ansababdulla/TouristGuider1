@@ -17,8 +17,58 @@ namespace TouristGuider.Controllers
         // GET: RoomBookings
         public ActionResult Index()
         {
+            var cred = Convert.ToInt32(Session["id"]);
+            Hotel htl = db.Hotels.Where(x => x.CredID == cred).FirstOrDefault();
             var roomBookings = db.RoomBookings.Include(r => r.User);
             return View(roomBookings.ToList());
+        }
+        public ActionResult Userview()
+        {
+            var id = Convert.ToInt32(Session["Usrid"]);
+            var RoomBkng = db.RoomBookings.Include(f => f.User).Where(x => x.UserID == id);
+            return View(RoomBkng.ToList());
+        }
+
+
+        public ActionResult Paid(int id)
+        {
+            RoomBooking rmbk = db.RoomBookings.Where(x => x.RmBkID == id).FirstOrDefault();
+            rmbk.isCheckout = true;
+            rmbk.ChlOtDt = DateTime.Now;
+            db.Entry(rmbk).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index", "RoomBookings");
+
+        }
+        public ActionResult AddRoom(int rmid,int htlid)
+        {
+
+            Room rm = db.Rooms.Where(x => x.RmID == rmid).FirstOrDefault();
+            var usrid = Convert.ToInt32(Session["Usrid"]);
+            User usr = db.Users.Where(x => x.UserID == usrid).FirstOrDefault();
+            RoomBooking rmbk = new RoomBooking();
+            RoomBooking rmbkng = db.RoomBookings.Where(x => x.UserID == usr.UserID && x.isCheckout == false).FirstOrDefault();
+            if (rmbkng != null )
+            {
+                rmbkng.TtlRt = rmbkng.TtlRt + Convert.ToInt32(rm.RmRt);
+                db.Entry(rmbkng).State = EntityState.Modified;
+                db.SaveChanges();
+                return View();
+            }
+            else
+            {
+                rmbkng = new RoomBooking();
+                rmbkng.UserID = usr.UserID;
+                rmbkng.RmID = rmid;
+                rmbkng.ChkInDt = DateTime.Now;
+                rmbkng.ChlOtDt = null;
+                rmbkng.TtlRt = Convert.ToInt32(rm.RmRt);
+                rmbkng.isCheckout = false;
+                rmbkng.HtlID = htlid;
+                db.RoomBookings.Add(rmbkng);
+                db.SaveChanges();
+                return View();
+            }
         }
 
         // GET: RoomBookings/Details/5

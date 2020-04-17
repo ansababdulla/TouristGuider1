@@ -17,10 +17,18 @@ namespace TouristGuider.Controllers
         // GET: FoodOrders
         public ActionResult Index()
         {
-
-            var foodOrders = db.FoodOrders.Include(f => f.User);
+            var cred = Convert.ToInt32(Session["id"]);
+            Restaurant res = db.Restaurants.Where(x => x.CredID == cred).FirstOrDefault();
+            var foodOrders = db.FoodOrders.Include(f => f.User).Where(x => x.RstID == res.RstID);
             return View(foodOrders.ToList());
         }
+        public ActionResult Userview()
+        {
+            var id = Convert.ToInt32(Session["Usrid"]);
+            var foodOrders = db.FoodOrders.Include(f => f.User).Where(x => x.UserID == id);
+            return View(foodOrders.ToList());
+        }
+
 
         public ActionResult Paid(int id)
         {

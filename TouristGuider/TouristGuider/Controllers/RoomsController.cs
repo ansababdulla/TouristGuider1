@@ -28,6 +28,13 @@ namespace TouristGuider.Controllers
             return View(rooms.ToList());
         }
 
+        public ActionResult ViewRoom(int id)
+        {
+     
+            var rooms = db.Rooms.Include(f => f.Hotel).Where(x => x.HtlID == id);
+            return View(rooms.ToList());
+        }
+
         // GET: Rooms/Details/5
         public ActionResult Details(long? id)
         {
