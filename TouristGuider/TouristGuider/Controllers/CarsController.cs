@@ -27,6 +27,13 @@ namespace TouristGuider.Controllers
             var cars = db.Cars.Include(c => c.RentCar).Where(c => c.RtID == rtcr.RtID);
             return View(cars.ToList());
         }
+        public ActionResult Viewcar(int id)
+        { 
+            
+            RentCar rtcr = db.RentCars.Where(r => r.RtID == id).FirstOrDefault();
+            var cars = db.Cars.Include(c => c.RentCar).Where(c => c.RtID == rtcr.RtID);
+            return View(cars.ToList());
+        }
 
         // GET: Cars/Details/5
         public ActionResult Details(long? id)

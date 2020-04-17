@@ -92,7 +92,7 @@ namespace TouristGuider.Controllers
                 {
                     Session["Role"] = "Rent Owner";
                     Session["id"] = cred.CredID;
-                    Session["Usrid"] = user.UserID;
+                    Session[""] = user.UserID;
                     return RedirectToAction("Index", "Cars");
                 }
             }

@@ -63,6 +63,9 @@
             @Html.ActionLink("Details", "Details", new { id=item.RtBkID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.RtBkID })
         </td>
+        <td>
+            @Html.ActionLink("Paid","Paid","RentBookings",new { id = item.RtBkID},null)
+        </td>
     </tr>
 }
 

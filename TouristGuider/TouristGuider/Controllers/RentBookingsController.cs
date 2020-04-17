@@ -17,10 +17,56 @@ namespace TouristGuider.Controllers
         // GET: RentBookings
         public ActionResult Index()
         {
-            var rentBookings = db.RentBookings.Include(r => r.Car).Include(r => r.User);
+            var id = Convert.ToInt32(Session["id"]);
+            RentCar rtcr = db.RentCars.Where(x => x.CredID == id).FirstOrDefault();
+            var rentBookings = db.RentBookings.Include(r => r.Car).Include(r => r.User).Where(x => x.RtID == rtcr.RtID);
             return View(rentBookings.ToList());
         }
+        public ActionResult Paid(int id)
+        {
+            RentBooking rtbk = db.RentBookings.Where(x => x.RtBkID == id).FirstOrDefault();
+            rtbk.isReturned = true;
+            rtbk.DateReturned = DateTime.Now;
+            db.Entry(rtbk).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index","RentBookings");
+        }
+        public ActionResult Userview()
+        {
+            var id = Convert.ToInt32(Session["Usrid"]);
+            var RentBookings = db.RentBookings.Include(f => f.User).Where(x => x.UserID == id);
+            return View(RentBookings.ToList());
+        }
 
+        public ActionResult Addcar(Car car)
+     {
+            var id = Convert.ToInt32(Session["Usrid"]);
+            Car cr = db.Cars.Where(x => x.CarID == car.CarID).FirstOrDefault();
+            RentBooking rtbk = db.RentBookings.Where(x => x.UserID == id && x.isReturned == false).FirstOrDefault();
+            if (rtbk != null )
+            {
+                rtbk.TtlRt = rtbk.TtlRt + Convert.ToInt32(cr.CarRt) * Convert.ToInt32(car.CarRt);
+                db.Entry(rtbk).State = EntityState.Modified;
+                db.SaveChanges();
+                return View();
+            }
+            else
+            {
+                rtbk = new RentBooking();
+                rtbk.CarID = car.CarID;
+                rtbk.RtID = car.RtID;
+                rtbk.DateBooked = DateTime.Now;
+                rtbk.DateReturned = null;
+                rtbk.NoofDays = Convert.ToInt32(car.CarRt);
+                rtbk.TtlRt = Convert.ToInt32(cr.CarRt) * Convert.ToInt32(car.CarRt);
+                rtbk.isReturned = false;
+                rtbk.UserID = id;
+                db.RentBookings.Add(rtbk);
+                db.SaveChanges();
+                return View();
+            }
+
+        }
         // GET: RentBookings/Details/5
         public ActionResult Details(long? id)
         {

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<TouristGuider.Models.Car>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CarNm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarRt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentCar.RtNm)
+        </th>
+        <th>
+            @Html.DisplayName("No of Days")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarNm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarRt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentCar.RtNm)
+            </td>
+
+
+            @*@Html.ActionLink("Book Car","Addcar","RentBookings",new { crid = item.CarID,rtid = item.RtID})*@
+            @using (Html.BeginForm("Addcar", "RentBookings", FormMethod.Post))
+            {
+
+                @Html.HiddenFor(model => item.CarID)
+                <td>
+                    <input type="text" name="CarRt" />
+                    <input type="hidden" name="CarID" value="@item.CarID" />
+                    <input type="hidden" name="RtID" value="@item.RtID" />
+                </td>
+                <td>
+                    <input type="submit" value="Book the Car" />
+                    @*<button id="button">Click Me</button>*@
+                    @*@Html.ActionLink("Add to Plate", "Addfood", "FoodOrders", new { id = item.FdID }, null)
+                        @Html.ActionLink("Add to Plate", "Addfood", "Foods", new { id = "myLink" },null)*@
+
+                </td>
+
+            }
+
+        </tr>
+    }
+</table>
+@using (Html.BeginForm("Userview", "RentBookings", FormMethod.Post))
+{
+
+    <input type="submit" value="Checkout" />
+}
+
