@@ -2,22 +2,64 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RstNm)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RstLctn)
-        </th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
+@foreach (var item in Model)
+{
+    <table align="center" cellpadding="50" cellspacing="50" >
+        <tr>
+            <td>
+                <div class="category-caption">
+                    <h2>@item.RstNm</h2>
+                    <h6>@item.RstLctn</h6>
+                    <span class="best"><a href="" class="elements">Restaurants</a></span>
+                </div>
+
+            </td>
+            <td>
+                <div class=" section-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-6">
+                                <div class="single-category mb-30">
+                                    <div class="category-img">
+                                        @if (item.RstNm == "rest")
+                                        {
+                                            <img src="../Content/Layout/assets/img/categori/blue-umbrelass-on-shore-2921615.jpg" alt="" width="400" height="200">
+                                        }
+                                        else if (item.RstNm == "rest1")
+                                        {
+                                            <img src="../Content/Layout/assets/img/categori/restaurant-table-and-chairs-914388.jpg" alt="" width="400" height="200">
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+
+            <td>
+                <br />
+                <a href="@Url.Action( "Viewfood", "Foods",new { id = item.RstID})" class="btn header-btn">Order Food Now</a>
+                <br />
+            </td>
+        </tr>
+    </table>
+
+
+
+}
+
+
+
+
+@*<tr>
         <td>
             @Html.DisplayFor(modelItem => item.RstNm)
         </td>
@@ -25,9 +67,6 @@
             @Html.DisplayFor(modelItem => item.RstLctn)
         </td>
         <td>
-            @Html.ActionLink("Goto Food Menu", "Viewfood", "Foods", new { id = item.RstID },null)
+            @Html.ActionLink("Goto Food Menu", "Viewfood", "Foods", new { id = item.RstID }, null)
         </td>
-    </tr>
-}
-
-</table>
+    </tr>*@
