@@ -10,7 +10,7 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <p>
-    @Html.ActionLink("Food Ordered List", "Index","FoodOrders")
+    @Html.ActionLink("Food Ordered List", "Index", "FoodOrders")
 </p>
 <table class="table">
     <tr>
@@ -24,21 +24,23 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FdNm)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FdRt)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FdNm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FdRt)
+            </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.FdID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.FdID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.FdID })
-        </td>
-    </tr>
-}
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.FdID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.FdID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.FdID })
+            </td>
+        </tr>
+    }
 
 </table>
+

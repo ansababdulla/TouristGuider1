@@ -1,4 +1,3 @@
-E:\MainProject\TouristGuider1\TouristGuider\TouristGuider\obj\Debug\TouristGuider.csproj.CoreCompileInputs.cache
 E:\MainProject\TouristGuider1\TouristGuider\TouristGuider\bin\TouristGuider.dll.config
 E:\MainProject\TouristGuider1\TouristGuider\TouristGuider\bin\TouristGuider.dll
 E:\MainProject\TouristGuider1\TouristGuider\TouristGuider\bin\TouristGuider.pdb
@@ -77,6 +76,7 @@ E:\MainProject\TouristGuider1\TouristGuider\TouristGuider\bin\System.Web.WebPage
 E:\MainProject\TouristGuider1\TouristGuider\TouristGuider\bin\Newtonsoft.Json.xml
 E:\MainProject\TouristGuider1\TouristGuider\TouristGuider\bin\Antlr3.Runtime.pdb
 E:\MainProject\TouristGuider1\TouristGuider\TouristGuider\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\MainProject\TouristGuider1\TouristGuider\TouristGuider\obj\Debug\TouristGuider.csproj.CoreCompileInputs.cache
 E:\MainProject\TouristGuider1\TouristGuider\TouristGuider\obj\Debug\TouristGuider.csproj.CopyComplete
 E:\MainProject\TouristGuider1\TouristGuider\TouristGuider\obj\Debug\TouristGuider.dll
 E:\MainProject\TouristGuider1\TouristGuider\TouristGuider\obj\Debug\TouristGuider.pdb

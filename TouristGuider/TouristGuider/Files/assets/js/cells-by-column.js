@@ -18,7 +18,7 @@
   } else if ( typeof exports === 'object' ) {
     // CommonJS
     module.exports = factory(
-      require('isotope-layout/js/layout-mode')
+      require('../../../Scripts/layout/node_modules/isotope-layout/js/layout-mode')
     );
   } else {
     // browser global

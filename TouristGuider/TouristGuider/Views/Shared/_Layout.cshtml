@@ -6,22 +6,21 @@
     <title>eCommerce HTML-5 Template </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="../Content/Layout/assets/img/favicon.ico">
+
+
     <!-- CSS here -->
-    <link rel="stylesheet" href="../Content/Layout/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../Content/Layout/assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../Content/Layout/assets/css/flaticon.css">
-    <link rel="stylesheet" href="../Content/Layout/assets/css/slicknav.css">
-    <link rel="stylesheet" href="../Content/Layout/assets/css/animate.min.css">
-    <link rel="stylesheet" href="../Content/Layout/assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="../Content/Layout/assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="../Content/Layout/assets/css/themify-icons.css">
-    <link rel="stylesheet" href="../Content/Layout/assets/css/slick.css">
-    <link rel="stylesheet" href="../Content/Layout/assets/css/nice-select.css">
-    <link rel="stylesheet" href="../Content/Layout/assets/css/style.css">
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/Home/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/Home/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/Home/flaticon.css">
+    <link rel="stylesheet" href="~/Content/Home/slicknav.css">
+    <link rel="stylesheet" href="~/Content/Home/animate.min.css">
+    <link rel="stylesheet" href="~/Content/Home/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/Home/fontawesome-all.min.css">
+    <link rel="stylesheet" href="~/Content/Home/themify-icons.css">
+    <link rel="stylesheet" href="~/Content/Home/slick.css">
+    <link rel="stylesheet" href="~/Content/Home/nice-select.css">
+    <link rel="stylesheet" href="~/Content/Home/style.css">
+    @RenderSection("Styles", false)
 </head>
 <body>
     @*<div class="navbar navbar-inverse navbar-fixed-top">
@@ -57,7 +56,7 @@
                             <div class="row d-flex justify-content-between align-items-center">
                                 <div class="header-info-left d-flex">
                                     <div class="flag">
-                                        <img src="../Content/Layout/assets/img/icon/header_icon.png" alt="">
+                                        <img src="~/Content/Layout/assets/img/icon/header_icon.png" alt="">
                                     </div>
                                     <div class="select-this">
                                         <form action="#">
@@ -94,7 +93,7 @@
                             <!-- Logo -->
                             <div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
                                 <div class="logo">
-                                    <a href="index.html"><img src="../Content/Layout/assets/img/logo/logo.png" alt=""></a>
+                                    <a href="index.html"><img src="~/Content/Layout/assets/img/logo/logo.png" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-8 col-md-7 col-sm-5">
@@ -169,9 +168,7 @@
         </div>
         <!-- Header End -->
     </header>
-    <div id ="content">
-        @RenderBody()
-    </div>
+    @RenderBody()
     <footer>
         <div class="footer-area footer-padding">
             <div class="container">
@@ -181,7 +178,7 @@
                             <div class="single-footer-caption mb-30">
                                 <!-- logo -->
                                 <div class="footer-logo">
-                                    <a href="index.html"><img src="../Content/Layout/assets/img/logo/logo2_footer.png" alt=""></a>
+                                    <a href="index.html"><img src="~/Content/Layout/assets/img/logo/logo2_footer.png" alt=""></a>
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
@@ -254,41 +251,38 @@
         </div>
     </footer>
     <!-- All JS Custom Plugins Link Here here -->
-    <script src="../Content/Layout/assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="~/Scripts/Home/vendor/jquery-1.12.4.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->
-    <script src="../Content/Layout/assets/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="../Content/Layout/assets/js/popper.min.js"></script>
-    <script src="../Content/Layout/assets/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/Home/vendor/jquery-1.12.4.min.js"></script>
+    <script src="~/Scripts/Home/popper.min.js"></script>
+
+    <script src="~/Scripts/Home/bootstrap.min.js"></script>
     <!-- Jquery Mobile Menu -->
-    <script src="../Content/Layout/assets/js/jquery.slicknav.min.js"></script>
+    <script src="~/Scripts/Home/jquery.slicknav.min.js"></script>
 
     <!-- Jquery Slick , Owl-Carousel Plugins -->
-    <script src="../Content/Layout/assets/js/owl.carousel.min.js"></script>
-    <script src="../Content/Layout/assets/js/slick.min.js"></script>
+    <script src="~/Scripts/Home/owl.carousel.min.js"></script>
+    <script src="~/Scripts/Home/slick.min.js"></script>
 
     <!-- One Page, Animated-HeadLin -->
-    <script src="../Content/Layout/assets/js/wow.min.js"></script>
-    <script src="../Content/Layout/assets/js/animated.headline.js"></script>
-    <script src="../Content/Layout/assets/js/jquery.magnific-popup.js"></script>
+    <script src="~/Scripts/Home/wow.min.js"></script>
+    <script src="~/Scripts/Home/animated.headline.js"></script>
+    <script src="~/Scripts/Home/jquery.magnific-popup.js"></script>
 
     <!-- Scrollup, nice-select, sticky -->
-    <script src="../Content/Layout/assets/js/jquery.scrollUp.min.js"></script>
-    <script src="../Content/Layout/assets/js/jquery.nice-select.min.js"></script>
-    <script src="../Content/Layout/assets/js/jquery.sticky.js"></script>
+    <script src="~/Scripts/Home/jquery.scrollUp.min.js"></script>
+    <script src="~/Scripts/Home/jquery.nice-select.min.js"></script>
+    <script src="~/Scripts/Home/jquery.sticky.js"></script>
 
     <!-- contact js -->
-    <script src="../Content/Layout/assets/js/contact.js"></script>
-    <script src="../Content/Layout/assets/js/jquery.form.js"></script>
-    <script src="../Content/Layout/assets/js/jquery.validate.min.js"></script>
-    <script src="../Content/Layout/assets/js/mail-script.js"></script>
-    <script src="../Content/Layout/assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/Scripts/Home/contact.js"></script>
+    <script src="~/Scripts/Home/jquery.form.js"></script>
+    <script src="~/Scripts/Home/jquery.validate.min.js"></script>
+    <script src="~/Scripts/Home/mail-script.js"></script>
+    <script src="~/Scripts/Home/jquery.ajaxchimp.min.js"></script>
 
     <!-- Jquery Plugins, main Jquery -->
-    <script src="../Content/Layout/assets/js/plugins.js"></script>
-    <script src="../Content/Layout/assets/js/main.js"></script>
-
-    @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
+    <script src="~/Scripts/Home/plugins.js"></script>
+    <script src="~/Scripts/Home/main.js"></script>
 </body>
 </html>
