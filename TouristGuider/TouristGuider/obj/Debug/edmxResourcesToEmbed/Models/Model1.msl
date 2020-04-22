@@ -1,16 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="TouristGuiderModelStoreContainer" CdmEntityContainer="Entities">
-    <EntitySetMapping Name="Cars">
-      <EntityTypeMapping TypeName="TouristGuiderModel.Car">
-        <MappingFragment StoreEntitySet="Car">
-          <ScalarProperty Name="CarID" ColumnName="CarID" />
-          <ScalarProperty Name="RtID" ColumnName="RtID" />
-          <ScalarProperty Name="CarNm" ColumnName="CarNm" />
-          <ScalarProperty Name="CarRt" ColumnName="CarRt" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Credentials">
       <EntityTypeMapping TypeName="TouristGuiderModel.Credential">
         <MappingFragment StoreEntitySet="Credential">
@@ -21,60 +11,11 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Foods">
-      <EntityTypeMapping TypeName="TouristGuiderModel.Food">
-        <MappingFragment StoreEntitySet="Food">
-          <ScalarProperty Name="FdID" ColumnName="FdID" />
-          <ScalarProperty Name="RstID" ColumnName="RstID" />
-          <ScalarProperty Name="FdNm" ColumnName="FdNm" />
-          <ScalarProperty Name="FdRt" ColumnName="FdRt" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Hotels">
-      <EntityTypeMapping TypeName="TouristGuiderModel.Hotel">
-        <MappingFragment StoreEntitySet="Hotel">
-          <ScalarProperty Name="HtlID" ColumnName="HtlID" />
-          <ScalarProperty Name="CredID" ColumnName="CredID" />
-          <ScalarProperty Name="HtlNm" ColumnName="HtlNm" />
-          <ScalarProperty Name="HtlLctn" ColumnName="HtlLctn" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="RentCars">
-      <EntityTypeMapping TypeName="TouristGuiderModel.RentCar">
-        <MappingFragment StoreEntitySet="RentCar">
-          <ScalarProperty Name="RtID" ColumnName="RtID" />
-          <ScalarProperty Name="CredID" ColumnName="CredID" />
-          <ScalarProperty Name="RtNm" ColumnName="RtNm" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Restaurants">
-      <EntityTypeMapping TypeName="TouristGuiderModel.Restaurant">
-        <MappingFragment StoreEntitySet="Restaurant">
-          <ScalarProperty Name="RstID" ColumnName="RstID" />
-          <ScalarProperty Name="CredID" ColumnName="CredID" />
-          <ScalarProperty Name="RstNm" ColumnName="RstNm" />
-          <ScalarProperty Name="RstLctn" ColumnName="RstLctn" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Roles">
       <EntityTypeMapping TypeName="TouristGuiderModel.Role">
         <MappingFragment StoreEntitySet="Role">
           <ScalarProperty Name="RoleID" ColumnName="RoleID" />
           <ScalarProperty Name="RoleNm" ColumnName="RoleNm" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Rooms">
-      <EntityTypeMapping TypeName="TouristGuiderModel.Room">
-        <MappingFragment StoreEntitySet="Room">
-          <ScalarProperty Name="RmID" ColumnName="RmID" />
-          <ScalarProperty Name="HtlID" ColumnName="HtlID" />
-          <ScalarProperty Name="RmNm" ColumnName="RmNm" />
-          <ScalarProperty Name="RmRt" ColumnName="RmRt" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -135,6 +76,71 @@
           <ScalarProperty Name="RmID" ColumnName="RmID" />
           <ScalarProperty Name="HtlID" ColumnName="HtlID" />
           <ScalarProperty Name="RmBkID" ColumnName="RmBkID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cars">
+      <EntityTypeMapping TypeName="TouristGuiderModel.Car">
+        <MappingFragment StoreEntitySet="Car">
+          <ScalarProperty Name="CarImg" ColumnName="CarImg" />
+          <ScalarProperty Name="CarRt" ColumnName="CarRt" />
+          <ScalarProperty Name="CarNm" ColumnName="CarNm" />
+          <ScalarProperty Name="RtID" ColumnName="RtID" />
+          <ScalarProperty Name="CarID" ColumnName="CarID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Foods">
+      <EntityTypeMapping TypeName="TouristGuiderModel.Food">
+        <MappingFragment StoreEntitySet="Food">
+          <ScalarProperty Name="FdImg" ColumnName="FdImg" />
+          <ScalarProperty Name="FdRt" ColumnName="FdRt" />
+          <ScalarProperty Name="FdNm" ColumnName="FdNm" />
+          <ScalarProperty Name="RstID" ColumnName="RstID" />
+          <ScalarProperty Name="FdID" ColumnName="FdID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hotels">
+      <EntityTypeMapping TypeName="TouristGuiderModel.Hotel">
+        <MappingFragment StoreEntitySet="Hotel">
+          <ScalarProperty Name="HtlImg" ColumnName="HtlImg" />
+          <ScalarProperty Name="HtlLctn" ColumnName="HtlLctn" />
+          <ScalarProperty Name="HtlNm" ColumnName="HtlNm" />
+          <ScalarProperty Name="CredID" ColumnName="CredID" />
+          <ScalarProperty Name="HtlID" ColumnName="HtlID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RentCars">
+      <EntityTypeMapping TypeName="TouristGuiderModel.RentCar">
+        <MappingFragment StoreEntitySet="RentCar">
+          <ScalarProperty Name="RtImg" ColumnName="RtImg" />
+          <ScalarProperty Name="RtNm" ColumnName="RtNm" />
+          <ScalarProperty Name="CredID" ColumnName="CredID" />
+          <ScalarProperty Name="RtID" ColumnName="RtID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Restaurants">
+      <EntityTypeMapping TypeName="TouristGuiderModel.Restaurant">
+        <MappingFragment StoreEntitySet="Restaurant">
+          <ScalarProperty Name="RstImg" ColumnName="RstImg" />
+          <ScalarProperty Name="RstLctn" ColumnName="RstLctn" />
+          <ScalarProperty Name="RstNm" ColumnName="RstNm" />
+          <ScalarProperty Name="CredID" ColumnName="CredID" />
+          <ScalarProperty Name="RstID" ColumnName="RstID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="TouristGuiderModel.Room">
+        <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="RmImg" ColumnName="RmImg" />
+          <ScalarProperty Name="RmRt" ColumnName="RmRt" />
+          <ScalarProperty Name="RmNm" ColumnName="RmNm" />
+          <ScalarProperty Name="HtlID" ColumnName="HtlID" />
+          <ScalarProperty Name="RmID" ColumnName="RmID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

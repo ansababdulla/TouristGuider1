@@ -6,21 +6,22 @@
     <title>eCommerce HTML-5 Template </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="~/Content/Home/bootstrap.min.css">
-    <link rel="stylesheet" href="~/Content/Home/owl.carousel.min.css">
-    <link rel="stylesheet" href="~/Content/Home/flaticon.css">
-    <link rel="stylesheet" href="~/Content/Home/slicknav.css">
-    <link rel="stylesheet" href="~/Content/Home/animate.min.css">
-    <link rel="stylesheet" href="~/Content/Home/magnific-popup.css">
-    <link rel="stylesheet" href="~/Content/Home/fontawesome-all.min.css">
-    <link rel="stylesheet" href="~/Content/Home/themify-icons.css">
-    <link rel="stylesheet" href="~/Content/Home/slick.css">
-    <link rel="stylesheet" href="~/Content/Home/nice-select.css">
-    <link rel="stylesheet" href="~/Content/Home/style.css">
-    @RenderSection("Styles", false)
+    <link rel="stylesheet" href="~/Content/Home/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/Home/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/Home/css/flaticon.css">
+    <link rel="stylesheet" href="~/Content/Home/css/slicknav.css">
+    <link rel="stylesheet" href="~/Content/Home/css/animate.min.css">
+    <link rel="stylesheet" href="~/Content/Home/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/Home/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="~/Content/Home/css/themify-icons.css">
+    <link rel="stylesheet" href="~/Content/Home/css/slick.css">
+    <link rel="stylesheet" href="~/Content/Home/css/nice-select.css">
+    <link rel="stylesheet" href="~/Content/Home/css/style.css">
+    @RenderSection("Styles", false);
 </head>
 <body>
     @*<div class="navbar navbar-inverse navbar-fixed-top">
@@ -151,7 +152,7 @@
                                     </li>
                                     <li>
                                         <div class="shopping-card">
-                                            <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                                            <a href=@Url.Action("Userview", "FoodOrders")><i class="fas fa-shopping-cart"></i></a>
                                         </div>
                                     </li>
                                     <li class="d-none d-lg-block"> <a href="@Url.Action( "Signin", "Account")" class="btn header-btn">Sign in</a></li>
@@ -250,39 +251,39 @@
             </div>
         </div>
     </footer>
+    <!-- JS here -->
     <!-- All JS Custom Plugins Link Here here -->
-    <script src="~/Scripts/Home/vendor/jquery-1.12.4.min.js"></script>
+    <script src="~/Content/Home/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->
-    <script src="~/Scripts/Home/vendor/jquery-1.12.4.min.js"></script>
-    <script src="~/Scripts/Home/popper.min.js"></script>
-
-    <script src="~/Scripts/Home/bootstrap.min.js"></script>
+    <script src="~/Content/Home/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="~/Content/Home/js/popper.min.js"></script>
+    <script src="~/Content/Home/js/bootstrap.min.js"></script>
     <!-- Jquery Mobile Menu -->
-    <script src="~/Scripts/Home/jquery.slicknav.min.js"></script>
+    <script src="~/Content/Home/js/jquery.slicknav.min.js"></script>
 
     <!-- Jquery Slick , Owl-Carousel Plugins -->
-    <script src="~/Scripts/Home/owl.carousel.min.js"></script>
-    <script src="~/Scripts/Home/slick.min.js"></script>
+    <script src="~/Content/Home/js/owl.carousel.min.js"></script>
+    <script src="~/Content/Home/js/slick.min.js"></script>
 
     <!-- One Page, Animated-HeadLin -->
-    <script src="~/Scripts/Home/wow.min.js"></script>
-    <script src="~/Scripts/Home/animated.headline.js"></script>
-    <script src="~/Scripts/Home/jquery.magnific-popup.js"></script>
+    <script src="~/Content/Home/js/wow.min.js"></script>
+    <script src="~/Content/Home/js/animated.headline.js"></script>
+    <script src="~/Content/Home/js/jquery.magnific-popup.js"></script>
 
     <!-- Scrollup, nice-select, sticky -->
-    <script src="~/Scripts/Home/jquery.scrollUp.min.js"></script>
-    <script src="~/Scripts/Home/jquery.nice-select.min.js"></script>
-    <script src="~/Scripts/Home/jquery.sticky.js"></script>
+    <script src="~/Content/Home/js/jquery.scrollUp.min.js"></script>
+    <script src="~/Content/Home/js/jquery.nice-select.min.js"></script>
+    <script src="~/Content/Home/js/jquery.sticky.js"></script>
 
     <!-- contact js -->
-    <script src="~/Scripts/Home/contact.js"></script>
-    <script src="~/Scripts/Home/jquery.form.js"></script>
-    <script src="~/Scripts/Home/jquery.validate.min.js"></script>
-    <script src="~/Scripts/Home/mail-script.js"></script>
-    <script src="~/Scripts/Home/jquery.ajaxchimp.min.js"></script>
+    <script src="~/Content/Home/js/contact.js"></script>
+    <script src="~/Content/Home/js/jquery.form.js"></script>
+    <script src="~/Content/Home/js/jquery.validate.min.js"></script>
+    <script src="~/Content/Home/js/mail-script.js"></script>
+    <script src="~/Content/Home/js/jquery.ajaxchimp.min.js"></script>
 
     <!-- Jquery Plugins, main Jquery -->
-    <script src="~/Scripts/Home/plugins.js"></script>
-    <script src="~/Scripts/Home/main.js"></script>
+    <script src="~/Content/Home/js/plugins.js"></script>
+    <script src="~/Content/Home/js/main.js"></script>
 </body>
 </html>

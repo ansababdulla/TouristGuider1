@@ -24,6 +24,7 @@ namespace TouristGuider.Models
         public long RtID { get; set; }
         public Nullable<long> CredID { get; set; }
         public string RtNm { get; set; }
+        public string RtImg { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Car> Cars { get; set; }

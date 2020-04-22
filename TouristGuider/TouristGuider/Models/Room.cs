@@ -18,6 +18,7 @@ namespace TouristGuider.Models
         public Nullable<long> HtlID { get; set; }
         public string RmNm { get; set; }
         public string RmRt { get; set; }
+        public string RmImg { get; set; }
     
         public virtual Hotel Hotel { get; set; }
     }

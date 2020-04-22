@@ -1,11 +1,9 @@
-﻿using Microsoft.Ajax.Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
 using TouristGuider.Models;
@@ -37,17 +35,18 @@ namespace TouristGuider.Controllers
             {
                 _food = fd
             };
+            TempData["message"] = "Food Added to Plate Successfully";
             return View(fd);
         }
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult Viewfood(Food createVM)
         {
-       //    FoodOrderDetail fdodrdtls = new FoodOrderDetail();
-        //    fdodrdtls.FdID = id;
-        //    fdodrdtls.Qty = qty;
-        //    db.FoodOrderDetails.Add(fdodrdtls);
-        //    db.SaveChanges();
+            //    FoodOrderDetail fdodrdtls = new FoodOrderDetail();
+            //    fdodrdtls.FdID = id;
+            //    fdodrdtls.Qty = qty;
+            //    db.FoodOrderDetails.Add(fdodrdtls);
+            //    db.SaveChanges();
             return View();
         }
         //public ActionResult Addfood()
@@ -93,6 +92,7 @@ namespace TouristGuider.Controllers
                 Food fd = new Food();
                 fd.FdNm = food.FdNm;
                 fd.FdRt = food.FdRt;
+                fd.FdImg = food.FdImg;
                 fd.RstID = res1.RstID;
                 db.Foods.Add(fd);
                 db.SaveChanges();

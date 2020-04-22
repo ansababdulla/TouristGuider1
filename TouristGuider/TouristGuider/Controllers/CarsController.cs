@@ -13,23 +13,23 @@ namespace TouristGuider.Controllers
     public class CarsController : Controller
     {
         private Entities db = new Entities();
-        
+
         // GET: Cars
         public ActionResult Index()
         {
             String role = Session["Role"].ToString();
-            if(role !="Rent Owner")
-                {
+            if (role != "Rent Owner")
+            {
                 return RedirectToAction("Signin", "Account");
-                }
+            }
             var id = Convert.ToInt32(Session["id"]);
             RentCar rtcr = db.RentCars.Where(r => r.CredID == id).FirstOrDefault();
             var cars = db.Cars.Include(c => c.RentCar).Where(c => c.RtID == rtcr.RtID);
             return View(cars.ToList());
         }
         public ActionResult Viewcar(int id)
-        { 
-            
+        {
+
             RentCar rtcr = db.RentCars.Where(r => r.RtID == id).FirstOrDefault();
             var cars = db.Cars.Include(c => c.RentCar).Where(c => c.RtID == rtcr.RtID);
             return View(cars.ToList());
@@ -62,7 +62,7 @@ namespace TouristGuider.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( Car car)
+        public ActionResult Create(Car car)
         {
             if (ModelState.IsValid)
             {

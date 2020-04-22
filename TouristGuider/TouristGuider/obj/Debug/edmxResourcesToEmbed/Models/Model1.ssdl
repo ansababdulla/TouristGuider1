@@ -8,6 +8,7 @@
     <Property Name="RtID" Type="bigint" />
     <Property Name="CarNm" Type="varchar" MaxLength="50" />
     <Property Name="CarRt" Type="varchar" MaxLength="50" />
+    <Property Name="CarImg" Type="varbinary" MaxLength="50" />
   </EntityType>
   <EntityType Name="Credential">
     <Key>
@@ -26,6 +27,7 @@
     <Property Name="RstID" Type="bigint" />
     <Property Name="FdNm" Type="varchar" MaxLength="50" />
     <Property Name="FdRt" Type="varchar" MaxLength="50" />
+    <Property Name="FdImg" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="FoodOrder">
     <Key>
@@ -55,6 +57,7 @@
     <Property Name="CredID" Type="bigint" />
     <Property Name="HtlNm" Type="varchar" MaxLength="50" />
     <Property Name="HtlLctn" Type="varchar" MaxLength="50" />
+    <Property Name="HtlImg" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="RentBooking">
     <Key>
@@ -77,6 +80,7 @@
     <Property Name="RtID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CredID" Type="bigint" />
     <Property Name="RtNm" Type="varchar" MaxLength="50" />
+    <Property Name="RtImg" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Restaurant">
     <Key>
@@ -86,6 +90,7 @@
     <Property Name="CredID" Type="bigint" />
     <Property Name="RstNm" Type="varchar" MaxLength="50" />
     <Property Name="RstLctn" Type="varchar" MaxLength="50" />
+    <Property Name="RstImg" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -102,6 +107,7 @@
     <Property Name="HtlID" Type="bigint" />
     <Property Name="RmNm" Type="varchar" MaxLength="50" />
     <Property Name="RmRt" Type="varchar" MaxLength="50" />
+    <Property Name="RmImg" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="RoomBooking">
     <Key>

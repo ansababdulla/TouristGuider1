@@ -19,7 +19,7 @@ namespace TouristGuider.Models
         public Nullable<long> FdID { get; set; }
         public Nullable<long> Qty { get; set; }
     
-        public virtual Food Food { get; set; }
         public virtual FoodOrder FoodOrder { get; set; }
+        public virtual Food Food { get; set; }
     }
 }

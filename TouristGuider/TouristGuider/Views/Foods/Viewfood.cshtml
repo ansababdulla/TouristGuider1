@@ -6,16 +6,6 @@
 }
 
 
-
-
-@using (Html.BeginForm("Userview", "FoodOrders", FormMethod.Post))
-{
-    
-    <input type="submit" value="View Plate" class="btn_1" />
-    
-
-
-}
 @foreach (var item in Model)
 {
     <div class="product_image_area">
@@ -23,9 +13,6 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="product_img_slide owl-carousel owl-loaded owl-drag">
-
-
-
                         <div class="owl-stage-outer">
                             <div class="owl-stage" style="transform: translate3d(-2760px, 0px, 0px); transition: all 0.25s ease 0s; width: 4830px;">
                                 <div class="owl-item cloned" style="width: 690px;">

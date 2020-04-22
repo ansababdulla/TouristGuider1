@@ -30,7 +30,7 @@ namespace TouristGuider.Controllers
 
         public ActionResult ViewRoom(int id)
         {
-     
+
             var rooms = db.Rooms.Include(f => f.Hotel).Where(x => x.HtlID == id);
             return View(rooms.ToList());
         }
@@ -62,7 +62,7 @@ namespace TouristGuider.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( Room room)
+        public ActionResult Create(Room room)
         {
             var id = Convert.ToInt32(Session["id"]);
             Hotel htl = db.Hotels.Where(x => x.CredID == id).FirstOrDefault();

@@ -24,6 +24,7 @@ namespace TouristGuider.Models
         public Nullable<long> RstID { get; set; }
         public string FdNm { get; set; }
         public string FdRt { get; set; }
+        public string FdImg { get; set; }
     
         public virtual Restaurant Restaurant { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

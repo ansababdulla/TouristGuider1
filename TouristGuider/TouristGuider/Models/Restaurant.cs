@@ -25,6 +25,7 @@ namespace TouristGuider.Models
         public Nullable<long> CredID { get; set; }
         public string RstNm { get; set; }
         public string RstLctn { get; set; }
+        public string RstImg { get; set; }
     
         public virtual Credential Credential { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

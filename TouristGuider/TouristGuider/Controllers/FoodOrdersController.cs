@@ -21,12 +21,22 @@ namespace TouristGuider.Controllers
             Restaurant res = db.Restaurants.Where(x => x.CredID == cred).FirstOrDefault();
             var foodOrders = db.FoodOrders.Include(f => f.User).Where(x => x.RstID == res.RstID);
             return View(foodOrders.ToList());
+
         }
         public ActionResult Userview()
         {
             var id = Convert.ToInt32(Session["Usrid"]);
-            var foodOrders = db.FoodOrders.Include(f => f.User).Where(x => x.UserID == id);
-            return View(foodOrders.ToList());
+            FoodOrder fdodr = db.FoodOrders.Include(f => f.User).Where(x => x.UserID == id && x.isPaid == false).FirstOrDefault();
+            var fdodrdtls = db.FoodOrderDetails.Where(x => x.FdOdrID == fdodr.FdOdrID);
+            if (fdodrdtls == null)
+            {
+                ModelState.AddModelError("New Error", "Invalid Username or Password");
+            }
+            else
+            {
+                return View(fdodrdtls.ToList());
+            }
+            return View();
         }
 
 
@@ -115,7 +125,7 @@ namespace TouristGuider.Controllers
             //    db.SaveChanges();
             //    return View();
             //}
-            return View();
+            return RedirectToAction("Viewfood","Foods",new { id = createVM.RstID});
         }
 
         // GET: FoodOrders/Create
