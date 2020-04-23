@@ -14,6 +14,12 @@ namespace TouristGuider.Models
     
     public partial class Room
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Room()
+        {
+            this.RoomBookings = new HashSet<RoomBooking>();
+        }
+    
         public long RmID { get; set; }
         public Nullable<long> HtlID { get; set; }
         public string RmNm { get; set; }
@@ -21,5 +27,7 @@ namespace TouristGuider.Models
         public string RmImg { get; set; }
     
         public virtual Hotel Hotel { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RoomBooking> RoomBookings { get; set; }
     }
 }

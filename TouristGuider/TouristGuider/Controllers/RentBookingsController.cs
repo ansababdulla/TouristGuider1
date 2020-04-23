@@ -40,15 +40,16 @@ namespace TouristGuider.Controllers
 
         public ActionResult Addcar(Car car)
      {
+            var flag = false;
             var id = Convert.ToInt32(Session["Usrid"]);
             Car cr = db.Cars.Where(x => x.CarID == car.CarID).FirstOrDefault();
             RentBooking rtbk = db.RentBookings.Where(x => x.UserID == id && x.isReturned == false).FirstOrDefault();
-            if (rtbk != null )
+            if (rtbk != null && flag == true)
             {
                 rtbk.TtlRt = rtbk.TtlRt + Convert.ToInt32(cr.CarRt) * Convert.ToInt32(car.CarRt);
                 db.Entry(rtbk).State = EntityState.Modified;
                 db.SaveChanges();
-                return View();
+                return RedirectToAction("Viewcar", "Cars", new { id = car.RtID });
             }
             else
             {
@@ -63,7 +64,8 @@ namespace TouristGuider.Controllers
                 rtbk.UserID = id;
                 db.RentBookings.Add(rtbk);
                 db.SaveChanges();
-                return View();
+                flag = true;
+                return RedirectToAction("Viewcar", "Cars", new { id = car.RtID });
             }
 
         }

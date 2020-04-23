@@ -2,9 +2,10 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_RentLayout.cshtml";
 }
 
-<h2>Index</h2>
+@*<h2>Index</h2>
 
 
 <table class="table">
@@ -18,19 +19,119 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RtNm)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Credential.Email)
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RtNm)
             </td>
-        <td>
-            @Html.ActionLink("Rent a Car","Viewcar","Cars",new { id = item.RtID},null)
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Credential.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Rent a Car", "Viewcar", "Cars", new { id = item.RtID }, null)
+            </td>
 
-    </tr>
-}
+        </tr>
+    }
 
 </table>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}*@
+
+
+
+
+@*<table align="center" cellpadding="50" cellspacing="50">
+        <tr>
+            <td>
+                <div class="category-caption">
+                    <h2>@item.RstNm</h2>
+                    <h6>@item.RstLctn</h6>
+                    <span class="best"><a href="" class="elements">Restaurants</a></span>
+                </div>
+
+            </td>
+            <td>
+                <div class=" section-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-6">
+                                <div class="single-category mb-30">
+                                    <div class="category-img">
+                                        @if (item.RstNm == "rest")
+                                        {
+                                            <img src="../Content/Layout/assets/img/categori/blue-umbrelass-on-shore-2921615.jpg" alt="" width="400" height="200">
+                                        }
+                                        else if (item.RstNm == "rest1")
+                                        {
+                                            <img src="../Content/Layout/assets/img/categori/restaurant-table-and-chairs-914388.jpg" alt="" width="400" height="200">
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+
+            <td>
+                <br />
+                <a href="@Url.Action( "Viewfood", "Foods",new { id = item.RstID})" class="btn header-btn">Order Food Now</a>
+                <br />
+            </td>
+        </tr>
+    </table>*@
+<div class="tab-content" id="nav-tabContent">
+    <!-- card one -->
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single-product mb-60">
+                        <div class="product-img">
+                            <img src="@item.RtImg" alt="" width="400" height="200">
+                            <div class="new-product">
+                                <h5>@item.RtNm</h5>
+
+                            </div>
+                        </div>
+                        <div class="product-caption">
+                            <div class="product-ratting">
+
+                            </div>
+                            <h4><a href="@Url.Action( "Viewcar", "Cars",new { id = item.RtID})" class="btn header-btn">Order Food Now</a></h4>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+@*<tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RstNm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RstLctn)
+        </td>
+        <td>
+            @Html.ActionLink("Goto Food Menu", "Viewfood", "Foods", new { id = item.RstID }, null)
+        </td>
+    </tr>*@

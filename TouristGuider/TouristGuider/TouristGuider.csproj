@@ -1152,6 +1152,8 @@
     <Content Include="Views\Rooms\Edit.cshtml" />
     <Content Include="Views\Rooms\Index.cshtml" />
     <Content Include="Views\Rooms\ViewRoom.cshtml" />
+    <Content Include="Views\Shared\_HotelLayout.cshtml" />
+    <Content Include="Views\Shared\_RentLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

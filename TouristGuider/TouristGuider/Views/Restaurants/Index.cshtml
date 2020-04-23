@@ -59,15 +59,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="single-product mb-60">
                             <div class="product-img">
-                                @if (item.RstNm == "rest")
-                                {
-                                    
-                                    <img src="~/Image/layout/categori/chef-preparing-vegetable-dish-on-tree-slab-1267320.jpg" alt="" width="400" height="200">
-                                }
-                                else if (item.RstNm == "rest1")
-                                {
-                                    <img src="~/Image/layout/categori/empty-dining-tables-and-chairs-1579739.jpg" alt="" width="400" height="200">
-                                }
+                                    <img src="@item.RstImg" alt="" width="400" height="200">
                                 <div class="new-product">
                                     <h5>@item.RstNm - @item.RstLctn</h5>
 

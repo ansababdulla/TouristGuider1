@@ -311,6 +311,18 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_RoomBooking_Room">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="RoomBooking" Type="Self.RoomBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="RmID" />
+      </Principal>
+      <Dependent Role="RoomBooking">
+        <PropertyRef Name="RmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoomBooking_User">
     <End Role="User" Type="Self.User" Multiplicity="0..1" />
     <End Role="RoomBooking" Type="Self.RoomBooking" Multiplicity="*" />
     <ReferentialConstraint>
@@ -409,6 +421,10 @@
       <End Role="RoomBooking" EntitySet="RoomBooking" />
     </AssociationSet>
     <AssociationSet Name="FK_RoomBooking_Room" Association="Self.FK_RoomBooking_Room">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="RoomBooking" EntitySet="RoomBooking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoomBooking_User" Association="Self.FK_RoomBooking_User">
       <End Role="User" EntitySet="User" />
       <End Role="RoomBooking" EntitySet="RoomBooking" />
     </AssociationSet>

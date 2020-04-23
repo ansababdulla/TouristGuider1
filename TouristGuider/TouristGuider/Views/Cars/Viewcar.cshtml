@@ -2,9 +2,10 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_RentLayout.cshtml";
 }
 
-<h2>Index</h2>
+@*<h2>Index</h2>
 
 
 <table class="table">
@@ -37,7 +38,7 @@
             </td>
 
 
-            @*@Html.ActionLink("Book Car","Addcar","RentBookings",new { crid = item.CarID,rtid = item.RtID})*@
+            @Html.ActionLink("Book Car","Addcar","RentBookings",new { crid = item.CarID,rtid = item.RtID})
             @using (Html.BeginForm("Addcar", "RentBookings", FormMethod.Post))
             {
 
@@ -49,9 +50,9 @@
                 </td>
                 <td>
                     <input type="submit" value="Book the Car" />
-                    @*<button id="button">Click Me</button>*@
-                    @*@Html.ActionLink("Add to Plate", "Addfood", "FoodOrders", new { id = item.FdID }, null)
-                        @Html.ActionLink("Add to Plate", "Addfood", "Foods", new { id = "myLink" },null)*@
+                    <button id="button">click me</button>
+                    @html.actionlink("add to plate", "addfood", "foodorders", new { id = item.fdid }, null)
+                        @html.actionlink("add to plate", "addfood", "foods", new { id = "mylink" },null)
 
                 </td>
 
@@ -64,5 +65,67 @@
 {
 
     <input type="submit" value="Checkout" />
+}*@
+
+
+
+
+@foreach (var item in Model)
+{
+    <div class="product_image_area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="product_img_slide owl-carousel owl-loaded owl-drag">
+                        <div class="owl-stage-outer">
+                            <div class="owl-stage" style="transform: translate3d(-2760px, 0px, 0px); transition: all 0.25s ease 0s; width: 4830px;">
+                                <div class="owl-item cloned" style="width: 690px;">
+                                    <div class="single_product_img">
+                                        <img src="@item.CarImg" alt="#" class="img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"> <i class="ti-angle-left"></i> </button><button type="button" role="presentation" class="owl-next"><i class="ti-angle-right"></i> </button></div><div class="owl-dots disabled"></div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="single_product_text text-center">
+                        <h3>
+                            @item.CarNm
+                        </h3>
+                        <p>
+                            Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources. Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Credibly innovate granular internal or organic sources whereas high standards in web-readiness. Energistically scale future-proof core competencies vis-a-vis impactful experiences. Dramatically synthesize integrated schemas. with optimal networks.
+                        </p>
+                        @using (Html.BeginForm("AddCar", "RentBookings", FormMethod.Post))
+                        {
+                            <div class="card_area">
+                                <div class="product_count_area">
+
+                                    @Html.HiddenFor(model => item.CarID)
+
+                                    <input type="hidden" name="CarID" value="@item.CarID" />
+                                    <input type="hidden" name="RtID" value="@item.RtID" />
+                                    <p>Quantity</p>
+                                    <div class="product_count d-inline-block">
+                                        <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
+                                        <input class="product_count_item input-number" type="text" value="1" min="0" max="10" name="CarRt">
+                                        <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
+                                    </div>
+                                    <p>@item.CarRt Rs</p>
+                                </div>
+                                <div class="add_to_cart">
+                                    @*<a href="#" class="btn_3">add to cart</a>*@
+
+                                </div>
+                            </div>
+                            <input type="submit" value="Add to Plate" class="btn_3" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 }
+
+
 

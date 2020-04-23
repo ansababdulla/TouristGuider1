@@ -2,46 +2,61 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_HotelLayout.cshtml";
+
+}
+@foreach (var item in Model)
+{ 
+    <div class="product_image_area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="product_img_slide owl-carousel owl-loaded owl-drag">
+                        <div class="owl-stage-outer">
+                            <div class="owl-stage" style="transform: translate3d(-2760px, 0px, 0px); transition: all 0.25s ease 0s; width: 4830px;">
+                                <div class="owl-item cloned" style="width: 690px;">
+                                    <div class="single_product_img">
+                                        <img src="@item.RmImg" alt="#" class="img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"> <i class="ti-angle-left"></i> </button><button type="button" role="presentation" class="owl-next"><i class="ti-angle-right"></i> </button></div><div class="owl-dots disabled"></div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="single_product_text text-center">
+                        <h3>
+                            @item.RmNm
+                        </h3>
+                        <p>
+                            Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources. Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Credibly innovate granular internal or organic sources whereas high standards in web-readiness. Energistically scale future-proof core competencies vis-a-vis impactful experiences. Dramatically synthesize integrated schemas. with optimal networks.
+                        </p>
+
+                        <div class="card_area">
+                            <div class="product_count_area">
+
+                                @*@Html.HiddenFor(model => item.FdID)
+
+                                    <input type="hidden" name="FdID" value="@item.FdID" />
+                                    <input type="hidden" name="RstID" value="@item.RstID" />
+                                    <p>Quantity</p>
+                                    <div class="product_count d-inline-block">
+                                        <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
+                                        <input class="product_count_item input-number" type="text" value="1" min="0" max="10" name="FdRt">
+                                        <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
+                                    </div>*@
+                                <p>@item.RmRt Rs</p>
+                            </div>
+                            <div class="add_to_cart">
+                                <a href="@Url.Action("AddRoom", "RoomBookings", new { rmid = item.RmID, htlid = item.HtlID }, null)" class="btn_3">add to cart</a>
+
+                            </div>
+                        </div>
+                        @*<input type="submit" value="Add to Plate" class="btn_3" />*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
-<h2>Index</h2>
-
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RmNm)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RmRt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hotel.HtlNm)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RmNm)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RmRt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hotel.HtlNm)
-            </td>
-            <td>
-                @Html.ActionLink("Book this room", "AddRoom", "RoomBookings", new { rmid = item.RmID, htlid = item.HtlID }, null)
-            </td>
-        </tr>
-    }
-
-</table>
-@using (Html.BeginForm("Userview", "RoomBookings", FormMethod.Post))
-{
-
-    <input type="submit" value="Checkout" />
-}

@@ -23,7 +23,8 @@ namespace TouristGuider.Models
         public Nullable<bool> isCheckout { get; set; }
         public Nullable<long> UserID { get; set; }
     
-        public virtual User User { get; set; }
         public virtual Hotel Hotel { get; set; }
+        public virtual Room Room { get; set; }
+        public virtual User User { get; set; }
     }
 }

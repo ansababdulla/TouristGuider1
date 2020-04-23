@@ -25,7 +25,7 @@ namespace TouristGuider.Controllers
         public ActionResult Userview()
         {
             var id = Convert.ToInt32(Session["Usrid"]);
-            var RoomBkng = db.RoomBookings.Include(f => f.User).Where(x => x.UserID == id);
+            var RoomBkng = db.RoomBookings.Include(f => f.User).Where(x => x.UserID == id && x.isCheckout == false);
             return View(RoomBkng.ToList());
         }
 
@@ -40,20 +40,20 @@ namespace TouristGuider.Controllers
             return RedirectToAction("Index", "RoomBookings");
 
         }
-        public ActionResult AddRoom(int rmid,int htlid)
+        public ActionResult AddRoom(int rmid, int htlid)
         {
-
+            bool flag=false;
             Room rm = db.Rooms.Where(x => x.RmID == rmid).FirstOrDefault();
             var usrid = Convert.ToInt32(Session["Usrid"]);
             User usr = db.Users.Where(x => x.UserID == usrid).FirstOrDefault();
             RoomBooking rmbk = new RoomBooking();
             RoomBooking rmbkng = db.RoomBookings.Where(x => x.UserID == usr.UserID && x.isCheckout == false).FirstOrDefault();
-            if (rmbkng != null )
+            if (rmbkng != null && flag == true)
             {
                 rmbkng.TtlRt = rmbkng.TtlRt + Convert.ToInt32(rm.RmRt);
                 db.Entry(rmbkng).State = EntityState.Modified;
                 db.SaveChanges();
-                return View();
+                return RedirectToAction("ViewRoom", "Rooms", new { id = htlid });
             }
             else
             {
@@ -67,7 +67,8 @@ namespace TouristGuider.Controllers
                 rmbkng.HtlID = htlid;
                 db.RoomBookings.Add(rmbkng);
                 db.SaveChanges();
-                return View();
+                flag = true;
+                return RedirectToAction("ViewRoom", "Rooms", new { id = htlid });
             }
         }
 
