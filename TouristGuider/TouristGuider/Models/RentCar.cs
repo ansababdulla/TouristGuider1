@@ -17,8 +17,8 @@ namespace TouristGuider.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public RentCar()
         {
-            this.Cars = new HashSet<Car>();
             this.RentBookings = new HashSet<RentBooking>();
+            this.Cars = new HashSet<Car>();
         }
     
         public long RtID { get; set; }
@@ -26,10 +26,10 @@ namespace TouristGuider.Models
         public string RtNm { get; set; }
         public string RtImg { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Car> Cars { get; set; }
         public virtual Credential Credential { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RentBooking> RentBookings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Car> Cars { get; set; }
     }
 }

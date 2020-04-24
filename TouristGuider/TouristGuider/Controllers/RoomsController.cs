@@ -72,6 +72,7 @@ namespace TouristGuider.Controllers
                 Room rm = new Room();
                 rm.RmNm = room.RmNm;
                 rm.RmRt = room.RmRt;
+                rm.RmImg = room.RmImg;
                 rm.HtlID = htl.HtlID;
                 db.Rooms.Add(rm);
                 db.SaveChanges();

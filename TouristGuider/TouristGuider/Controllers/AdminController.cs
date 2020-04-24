@@ -80,6 +80,7 @@ namespace TouristGuider.Controllers
                 Restaurant res = new Restaurant();
                 res.RstNm = create._restaurant.RstNm;
                 res.RstLctn = create._restaurant.RstLctn;
+                res.RstImg = create._restaurant.RstImg;
                 res.CredID = cred.CredID;
                 db.Restaurants.Add(res);
                 db.SaveChanges();
@@ -119,6 +120,7 @@ namespace TouristGuider.Controllers
                 Hotel htl = new Hotel();
                 htl.HtlNm = create._hotel.HtlNm;
                 htl.HtlLctn = create._hotel.HtlLctn;
+                htl.HtlImg = create._hotel.HtlImg;
                 htl.CredID = cred.CredID;
                 db.Hotels.Add(htl);
                 db.SaveChanges();
@@ -158,6 +160,7 @@ namespace TouristGuider.Controllers
                 RentCar rtcr = new RentCar();
                 rtcr.RtNm = create._rentcar.RtNm;
                 rtcr.CredID = cred.CredID;
+                rtcr.RtImg = create._rentcar.RtImg;
                 db.RentCars.Add(rtcr);
                 db.SaveChanges();
                 return RedirectToAction("Index");

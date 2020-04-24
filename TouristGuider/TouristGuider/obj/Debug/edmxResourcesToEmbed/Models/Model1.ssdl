@@ -8,7 +8,7 @@
     <Property Name="RtID" Type="bigint" />
     <Property Name="CarNm" Type="varchar" MaxLength="50" />
     <Property Name="CarRt" Type="varchar" MaxLength="50" />
-    <Property Name="CarImg" Type="varbinary" MaxLength="50" />
+    <Property Name="CarImg" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Credential">
     <Key>

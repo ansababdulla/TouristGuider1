@@ -85,20 +85,11 @@
       <End Role="User" EntitySet="Users" />
       <End Role="RentBooking" EntitySet="RentBookings" />
     </AssociationSet>
-    <EntitySet Name="Cars" EntityType="TouristGuiderModel.Car" />
     <EntitySet Name="Foods" EntityType="TouristGuiderModel.Food" />
     <EntitySet Name="Hotels" EntityType="TouristGuiderModel.Hotel" />
     <EntitySet Name="RentCars" EntityType="TouristGuiderModel.RentCar" />
     <EntitySet Name="Restaurants" EntityType="TouristGuiderModel.Restaurant" />
     <EntitySet Name="Rooms" EntityType="TouristGuiderModel.Room" />
-    <AssociationSet Name="FK_Car_RentCar" Association="TouristGuiderModel.FK_Car_RentCar">
-      <End Role="RentCar" EntitySet="RentCars" />
-      <End Role="Car" EntitySet="Cars" />
-    </AssociationSet>
-    <AssociationSet Name="FK_RentBooking_Car" Association="TouristGuiderModel.FK_RentBooking_Car">
-      <End Role="Car" EntitySet="Cars" />
-      <End Role="RentBooking" EntitySet="RentBookings" />
-    </AssociationSet>
     <AssociationSet Name="FK_Hotel_Credential" Association="TouristGuiderModel.FK_Hotel_Credential">
       <End Role="Credential" EntitySet="Credentials" />
       <End Role="Hotel" EntitySet="Hotels" />
@@ -144,6 +135,15 @@
       <End Role="User" EntitySet="Users" />
       <End Role="RoomBooking" EntitySet="RoomBookings" />
     </AssociationSet>
+    <EntitySet Name="Cars" EntityType="TouristGuiderModel.Car" />
+    <AssociationSet Name="FK_Car_RentCar" Association="TouristGuiderModel.FK_Car_RentCar">
+      <End Role="RentCar" EntitySet="RentCars" />
+      <End Role="Car" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RentBooking_Car" Association="TouristGuiderModel.FK_RentBooking_Car">
+      <End Role="Car" EntitySet="Cars" />
+      <End Role="RentBooking" EntitySet="RentBookings" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="FoodOrderDetail">
     <Key>
@@ -184,8 +184,8 @@
     <Property Name="isReturned" Type="Boolean" />
     <Property Name="UserID" Type="Int64" />
     <NavigationProperty Name="User" Relationship="TouristGuiderModel.FK_RentBooking_User" FromRole="RentBooking" ToRole="User" />
-    <NavigationProperty Name="Car" Relationship="TouristGuiderModel.FK_RentBooking_Car" FromRole="RentBooking" ToRole="Car" />
     <NavigationProperty Name="RentCar" Relationship="TouristGuiderModel.FK_RentBooking_RentCar" FromRole="RentBooking" ToRole="RentCar" />
+    <NavigationProperty Name="Car" Relationship="TouristGuiderModel.FK_RentBooking_Car" FromRole="RentBooking" ToRole="Car" />
   </EntityType>
   <Association Name="FK_FoodOrder_User">
     <End Type="TouristGuiderModel.User" Role="User" Multiplicity="0..1" />
@@ -223,18 +223,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="Car">
-    <Key>
-      <PropertyRef Name="CarID" />
-    </Key>
-    <Property Name="CarID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="RtID" Type="Int64" />
-    <Property Name="CarNm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="CarRt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="CarImg" Type="Binary" MaxLength="50" FixedLength="false" />
-    <NavigationProperty Name="RentCar" Relationship="TouristGuiderModel.FK_Car_RentCar" FromRole="Car" ToRole="RentCar" />
-    <NavigationProperty Name="RentBookings" Relationship="TouristGuiderModel.FK_RentBooking_Car" FromRole="Car" ToRole="RentBooking" />
-  </EntityType>
   <EntityType Name="Food">
     <Key>
       <PropertyRef Name="FdID" />
@@ -268,9 +256,9 @@
     <Property Name="CredID" Type="Int64" />
     <Property Name="RtNm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="RtImg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Cars" Relationship="TouristGuiderModel.FK_Car_RentCar" FromRole="RentCar" ToRole="Car" />
     <NavigationProperty Name="Credential" Relationship="TouristGuiderModel.FK_RentCar_Credential" FromRole="RentCar" ToRole="Credential" />
     <NavigationProperty Name="RentBookings" Relationship="TouristGuiderModel.FK_RentBooking_RentCar" FromRole="RentCar" ToRole="RentBooking" />
+    <NavigationProperty Name="Cars" Relationship="TouristGuiderModel.FK_Car_RentCar" FromRole="RentCar" ToRole="Car" />
   </EntityType>
   <EntityType Name="Restaurant">
     <Key>
@@ -297,30 +285,6 @@
     <NavigationProperty Name="Hotel" Relationship="TouristGuiderModel.FK_Room_Hotel" FromRole="Room" ToRole="Hotel" />
     <NavigationProperty Name="RoomBookings" Relationship="TouristGuiderModel.FK_RoomBooking_Room" FromRole="Room" ToRole="RoomBooking" />
   </EntityType>
-  <Association Name="FK_Car_RentCar">
-    <End Type="TouristGuiderModel.RentCar" Role="RentCar" Multiplicity="0..1" />
-    <End Type="TouristGuiderModel.Car" Role="Car" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="RentCar">
-        <PropertyRef Name="RtID" />
-      </Principal>
-      <Dependent Role="Car">
-        <PropertyRef Name="RtID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_RentBooking_Car">
-    <End Type="TouristGuiderModel.Car" Role="Car" Multiplicity="0..1" />
-    <End Type="TouristGuiderModel.RentBooking" Role="RentBooking" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Car">
-        <PropertyRef Name="CarID" />
-      </Principal>
-      <Dependent Role="RentBooking">
-        <PropertyRef Name="CarID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Hotel_Credential">
     <End Type="TouristGuiderModel.Credential" Role="Credential" Multiplicity="0..1" />
     <End Type="TouristGuiderModel.Hotel" Role="Hotel" Multiplicity="*" />
@@ -466,6 +430,42 @@
       </Principal>
       <Dependent Role="RoomBooking">
         <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="CarID" />
+    </Key>
+    <Property Name="CarID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RtID" Type="Int64" />
+    <Property Name="CarNm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CarRt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CarImg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="RentCar" Relationship="TouristGuiderModel.FK_Car_RentCar" FromRole="Car" ToRole="RentCar" />
+    <NavigationProperty Name="RentBookings" Relationship="TouristGuiderModel.FK_RentBooking_Car" FromRole="Car" ToRole="RentBooking" />
+  </EntityType>
+  <Association Name="FK_Car_RentCar">
+    <End Type="TouristGuiderModel.RentCar" Role="RentCar" Multiplicity="0..1" />
+    <End Type="TouristGuiderModel.Car" Role="Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RentCar">
+        <PropertyRef Name="RtID" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="RtID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RentBooking_Car">
+    <End Type="TouristGuiderModel.Car" Role="Car" Multiplicity="0..1" />
+    <End Type="TouristGuiderModel.RentBooking" Role="RentBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="CarID" />
+      </Principal>
+      <Dependent Role="RentBooking">
+        <PropertyRef Name="CarID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

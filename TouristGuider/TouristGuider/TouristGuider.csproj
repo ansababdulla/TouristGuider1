@@ -313,6 +313,41 @@
     <Content Include="Content\Login\vendor\select2\select2.min.css" />
     <Content Include="Content\Login\vendor\select2\select2.min.js" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="Image\Home\beach-birds-calm-clouds-219998.jpg" />
+    <Content Include="Image\Home\beach-clouds-dawn-dusk-262325.jpg" />
+    <Content Include="Image\Home\beach-dawn-dusk-ocean-189349.jpg" />
+    <Content Include="Image\Home\hero_man.png" />
+    <Content Include="Image\Home\Hotels\Hotel1.jpg" />
+    <Content Include="Image\Home\Hotels\Hotel2.jpg" />
+    <Content Include="Image\Home\Hotels\Hotel3.jpg" />
+    <Content Include="Image\Home\Hotels\Hotel4.jpg" />
+    <Content Include="Image\Home\Hotels\Hotel5.jpg" />
+    <Content Include="Image\Home\Hotels\Hotel6.jpg" />
+    <Content Include="Image\Home\Hotels\Rooms\double1.jpg" />
+    <Content Include="Image\Home\Hotels\Rooms\double2.jpg" />
+    <Content Include="Image\Home\Hotels\Rooms\single1.jpg" />
+    <Content Include="Image\Home\Hotels\Rooms\single2.jpg" />
+    <Content Include="Image\Home\ocean-view-during-daylight-127673.jpg" />
+    <Content Include="Image\Home\RentCars\Cars\audi.jpg" />
+    <Content Include="Image\Home\RentCars\Cars\benz.jpg" />
+    <Content Include="Image\Home\RentCars\Cars\bmw.jpg" />
+    <Content Include="Image\Home\RentCars\Cars\old.jpg" />
+    <Content Include="Image\Home\RentCars\Cars\toyoto.jpg" />
+    <Content Include="Image\Home\RentCars\rentcar1.jpg" />
+    <Content Include="Image\Home\RentCars\rentcar2.jpg" />
+    <Content Include="Image\Home\RentCars\rentcar3.jpg" />
+    <Content Include="Image\Home\Restaurants\Foods\breadomlete.jpg" />
+    <Content Include="Image\Home\Restaurants\Foods\burger.jpg" />
+    <Content Include="Image\Home\Restaurants\Foods\burito.jpg" />
+    <Content Include="Image\Home\Restaurants\Foods\naan.jpg" />
+    <Content Include="Image\Home\Restaurants\Foods\pizza.jpg" />
+    <Content Include="Image\Home\Restaurants\Foods\rice.jpg" />
+    <Content Include="Image\Home\Restaurants\res1.jpg" />
+    <Content Include="Image\Home\Restaurants\res2.jpg" />
+    <Content Include="Image\Home\Restaurants\res3.jpg" />
+    <Content Include="Image\Home\Restaurants\res4.jpg" />
+    <Content Include="Image\Home\Restaurants\res5.jpg" />
+    <Content Include="Image\Home\sea-shore-view-on-sunset-130879.jpg" />
     <Content Include="Image\login\bg-01.jpg" />
     <Content Include="Scripts\Home\animated.headline.js" />
     <Content Include="Scripts\Home\aos.js" />
@@ -950,9 +985,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Files\assets\img\blog\latest-post\" />
     <Folder Include="fonts\webfonts\login\" />
-    <Folder Include="Image\Home\Hotels\Rooms\" />
-    <Folder Include="Image\Home\RentCars\Cars\" />
-    <Folder Include="Image\Home\Restaurants\Foods\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -1119,12 +1151,6 @@
     <Content Include="Content\Home\webfonts\fa-solid-900.woff" />
     <Content Include="Content\Home\webfonts\fa-solid-900.woff2" />
     <None Include="packages.config" />
-    <Content Include="Views\Cars\Create.cshtml" />
-    <Content Include="Views\Cars\Delete.cshtml" />
-    <Content Include="Views\Cars\Details.cshtml" />
-    <Content Include="Views\Cars\Edit.cshtml" />
-    <Content Include="Views\Cars\Index.cshtml" />
-    <Content Include="Views\Cars\Viewcar.cshtml" />
     <Content Include="Views\Foods\Create.cshtml" />
     <Content Include="Views\Foods\Delete.cshtml" />
     <Content Include="Views\Foods\Details.cshtml" />
@@ -1154,6 +1180,12 @@
     <Content Include="Views\Rooms\ViewRoom.cshtml" />
     <Content Include="Views\Shared\_HotelLayout.cshtml" />
     <Content Include="Views\Shared\_RentLayout.cshtml" />
+    <Content Include="Views\Cars\Create.cshtml" />
+    <Content Include="Views\Cars\Delete.cshtml" />
+    <Content Include="Views\Cars\Details.cshtml" />
+    <Content Include="Views\Cars\Edit.cshtml" />
+    <Content Include="Views\Cars\Index.cshtml" />
+    <Content Include="Views\Cars\Viewcar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

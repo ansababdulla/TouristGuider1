@@ -16,14 +16,11 @@
         <AssociationConnector Association="TouristGuiderModel.FK_FoodOrder_User" />
         <AssociationConnector Association="TouristGuiderModel.FK_FoodOrderDetails_FoodOrder" />
         <AssociationConnector Association="TouristGuiderModel.FK_RentBooking_User" />
-        <EntityTypeShape EntityType="TouristGuiderModel.Car" Width="1.5" PointX="7.5" PointY="1" />
         <EntityTypeShape EntityType="TouristGuiderModel.Food" Width="1.5" PointX="7.5" PointY="16.125" />
         <EntityTypeShape EntityType="TouristGuiderModel.Hotel" Width="1.5" PointX="5.25" PointY="4.625" />
         <EntityTypeShape EntityType="TouristGuiderModel.RentCar" Width="1.5" PointX="5.25" PointY="1" />
         <EntityTypeShape EntityType="TouristGuiderModel.Restaurant" Width="1.5" PointX="5.25" PointY="16" />
         <EntityTypeShape EntityType="TouristGuiderModel.Room" Width="1.5" PointX="7.5" PointY="4.875" />
-        <AssociationConnector Association="TouristGuiderModel.FK_Car_RentCar" />
-        <AssociationConnector Association="TouristGuiderModel.FK_RentBooking_Car" />
         <AssociationConnector Association="TouristGuiderModel.FK_Hotel_Credential" />
         <AssociationConnector Association="TouristGuiderModel.FK_RentCar_Credential" />
         <AssociationConnector Association="TouristGuiderModel.FK_Restaurant_Credential" />
@@ -36,6 +33,9 @@
         <AssociationConnector Association="TouristGuiderModel.FK_RoomBooking_Hotel" />
         <AssociationConnector Association="TouristGuiderModel.FK_RoomBooking_Room" />
         <AssociationConnector Association="TouristGuiderModel.FK_RoomBooking_User" />
+        <EntityTypeShape EntityType="TouristGuiderModel.Car" Width="1.5" PointX="7.5" PointY="1" />
+        <AssociationConnector Association="TouristGuiderModel.FK_Car_RentCar" />
+        <AssociationConnector Association="TouristGuiderModel.FK_RentBooking_Car" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

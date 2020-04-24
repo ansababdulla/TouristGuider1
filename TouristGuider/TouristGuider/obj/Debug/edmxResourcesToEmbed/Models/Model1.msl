@@ -65,17 +65,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Cars">
-      <EntityTypeMapping TypeName="TouristGuiderModel.Car">
-        <MappingFragment StoreEntitySet="Car">
-          <ScalarProperty Name="CarImg" ColumnName="CarImg" />
-          <ScalarProperty Name="CarRt" ColumnName="CarRt" />
-          <ScalarProperty Name="CarNm" ColumnName="CarNm" />
-          <ScalarProperty Name="RtID" ColumnName="RtID" />
-          <ScalarProperty Name="CarID" ColumnName="CarID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Foods">
       <EntityTypeMapping TypeName="TouristGuiderModel.Food">
         <MappingFragment StoreEntitySet="Food">
@@ -141,6 +130,17 @@
           <ScalarProperty Name="RmID" ColumnName="RmID" />
           <ScalarProperty Name="HtlID" ColumnName="HtlID" />
           <ScalarProperty Name="RmBkID" ColumnName="RmBkID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cars">
+      <EntityTypeMapping TypeName="TouristGuiderModel.Car">
+        <MappingFragment StoreEntitySet="Car">
+          <ScalarProperty Name="CarImg" ColumnName="CarImg" />
+          <ScalarProperty Name="CarRt" ColumnName="CarRt" />
+          <ScalarProperty Name="CarNm" ColumnName="CarNm" />
+          <ScalarProperty Name="RtID" ColumnName="RtID" />
+          <ScalarProperty Name="CarID" ColumnName="CarID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

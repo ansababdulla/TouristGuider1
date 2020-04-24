@@ -25,7 +25,7 @@ namespace TouristGuider.Models
         public Nullable<long> UserID { get; set; }
     
         public virtual User User { get; set; }
-        public virtual Car Car { get; set; }
         public virtual RentCar RentCar { get; set; }
+        public virtual Car Car { get; set; }
     }
 }

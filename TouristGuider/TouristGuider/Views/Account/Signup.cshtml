@@ -1,6 +1,7 @@
 ﻿@model TouristGuider.ViewModel.RegistrationVM
 @{
     ViewBag.Title = "Signup";
+    Layout = null;
 }
 
 @*<h2>Signup</h2>
@@ -96,20 +97,21 @@
                         Account Sign Up
                     </span>
 
-                    <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type  name">
                         @Html.EditorFor(model => model.name, "name", new { htmlAttributes = new { @class = "input100", placeholder = "name" } })
                         <span class="focus-input100"></span>
                     </div>
-
-                    <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">
-                        @Html.EditorFor(model => model.email, "email", new { htmlAttributes = new { @class = "input100", placeholder = "email" } })
+                    <div class="wrap-input100 rs2-wrap-input100 " data-validate="Type  email">
+                        @Html.EditorFor(model => model.email, "name", new { htmlAttributes = new { @class = "input100", placeholder = "email" } })
                         <span class="focus-input100"></span>
                     </div>
 
-                    <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">
-                        @Html.EditorFor(model => model.password, "password", new { htmlAttributes = new { @class = "input100", placeholder = "password" }, })
-                        <span class="focus-input100"></span>
-                    </div>
+
+
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type password">
+                    @Html.EditorFor(model => model.password, "password", new { htmlAttributes = new { @class = "input100", placeholder = "password" }, })
+                    <span class="focus-input100"></span>
+</div>
 
                     <div class="container-login100-form-btn">
 

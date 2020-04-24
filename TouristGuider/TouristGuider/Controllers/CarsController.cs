@@ -71,6 +71,7 @@ namespace TouristGuider.Controllers
                 Car cr = new Car();
                 cr.CarNm = car.CarNm;
                 cr.CarRt = car.CarRt;
+                cr.CarImg = car.CarImg;
                 cr.RtID = rt.RtID;
                 db.Cars.Add(cr);
                 db.SaveChanges();

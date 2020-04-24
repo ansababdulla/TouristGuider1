@@ -24,7 +24,7 @@ namespace TouristGuider.Models
         public Nullable<long> RtID { get; set; }
         public string CarNm { get; set; }
         public string CarRt { get; set; }
-        public byte[] CarImg { get; set; }
+        public string CarImg { get; set; }
     
         public virtual RentCar RentCar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
